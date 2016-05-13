@@ -1,0 +1,38 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "point_entry",
+            "otherEntityName": "point_entry",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "social_skill"
+        },
+        {
+            "relationshipName": "student_social_skill",
+            "otherEntityName": "student_social_skill",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "social_skill"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "level",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160503152424",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "social_skill",
+    "pagination": "pagination"
+}

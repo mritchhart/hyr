@@ -1,0 +1,48 @@
+
+<div>
+    <h2><span translate="hopeRanchLearningAcademyApp.student_social_skill.detail.title">Student Social Skill</span> {{vm.student_social_skill.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span translate="hopeRanchLearningAcademyApp.student_social_skill.gross_pts">Gross Pts</span></dt>
+        <dd>
+            <span>{{vm.student_social_skill.gross_pts}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="hopeRanchLearningAcademyApp.student_social_skill.net_pts">Net Pts</span></dt>
+        <dd>
+            <span>{{vm.student_social_skill.net_pts}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="hopeRanchLearningAcademyApp.student_social_skill.start_date">Start Date</span></dt>
+        <dd>
+            <span>{{vm.student_social_skill.start_date | date:'mediumDate'}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="hopeRanchLearningAcademyApp.student_social_skill.end_date">End Date</span></dt>
+        <dd>
+            <span>{{vm.student_social_skill.end_date | date:'mediumDate'}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="hopeRanchLearningAcademyApp.student_social_skill.status">Status</span></dt>
+        <dd>
+            <span translate="{{'hopeRanchLearningAcademyApp.Status.' + vm.student_social_skill.status}}">{{vm.student_social_skill.status}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="hopeRanchLearningAcademyApp.student_social_skill.social_skill">Social Skill</span></dt>
+        <dd>
+            <a ui-sref="social-skill-detail({id:vm.student_social_skill.social_skill.id})">{{vm.student_social_skill.social_skill.name}}</a>
+        </dd>
+        <hr>
+        <dt><span translate="hopeRanchLearningAcademyApp.student_social_skill.student">Student</span></dt>
+        <dd>
+            <a ui-sref="student-detail({id:vm.student_social_skill.student.id})">{{vm.student_social_skill.student.last_name}}</a>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

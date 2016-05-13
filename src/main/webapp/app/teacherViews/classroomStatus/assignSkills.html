@@ -1,0 +1,116 @@
+<div class="skillParentContain">
+    <div class="skillAsnContainer col-lg-6">
+        <span style="color:red;">* Do not refresh this page *</span>
+        <h2>Manage Skills </h2>
+        <jh-alert></jh-alert>
+    <div class="container-fluid">
+        <form class="form-horizontal" role="form">
+            <br />
+            <div class="form-group">
+                <label for="studentName" class="control-label col-sm-2">Student: </label>
+                <div class="col-sm-9">
+                    <h2 id="studentName">{{student.first_name}} {{student.last_name}}</h2>
+                </div>
+            </div>
+
+            <!--<div class="form-group">-->
+                <!--<label for="selectGrp" class="control-label col-sm-3">Skill Group:</label>-->
+                    <!--<div class="col-sm-3">-->
+                        <!--<select class="form-control" id="selectGrp">-->
+                            <!--<option>1</option>-->
+                            <!--<option>2</option>-->
+                            <!--<option>3</option>-->
+                            <!--<option>4</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+
+                <!--<label for="selectSkill" class="control-label col-sm-3">Skill Name:</label>-->
+                <!--<div class="col-sm-3">-->
+                    <!--<select class="form-control" id="selectSkill">-->
+                        <!--<option>Being Polite</option>-->
+                        <!--<option>Ask Permission</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+
+          <!--  THRESHOLDS -->
+
+            <!-- <div class="row">
+                <div class="form-group">
+                    <label for="redValue" class="redValue">Red if below: </label>
+                    <div class="controls">
+                        <input type="number" id="redValue" />
+                    </div>
+
+                    <label for="greenValue" class="greenValue">Green if above: </label>
+                    <div class="controls">
+                        <input type="number" id="greenValue" />
+                    </div>
+                    <div class="controls">
+                        <br />
+                        <input type="submit" value="Cancel" class="btn btn-primary">
+                        <input type="submit" value="Submit" class="btn btn-primary">
+                    </div>
+
+                </div>
+            </div> -->
+
+        </form>
+    </div>
+
+        <div class="">
+            <h3>Available Skills</h3>
+            <div id="availableSkillsContainer" class="manageSkillsTable">
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th class="idTD">ID</th>
+                        <th class="lvlTD">Level</th>
+                        <th class="bigTD">Name</th>
+                        <th class="bigTD">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="social_Skill in allSkills track by social_Skill.id" ng-if="allSkills.length>0">
+                        <td class="smallTD">{{social_Skill.id}}</td>
+                        <td class="smallTD">{{social_Skill.level}}</td>
+                        <td class="bigTD">{{social_Skill.name}}</td>
+                        <td class="bigTD"><button type="button" class="btn btn-success btn-sm" ng-click="addSkill(social_Skill.id, $index)">Enroll</button></td>
+                    </tr>
+                    <tr ng-if="allSkills.length < 1"><td colspan="4">Student is currently enrolled in all existing skills</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="">
+            <h3>Enrolled Skills</h3>
+            <div id="enrolledSkillsContainer" class="manageSkillsTable">
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th class="smallTD">ID</th>
+                        <th class="smallTD">Level</th>
+                        <th class="bigTD">Name</th>
+                        <th class="bigTD">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="curSkill in enrolledSkillsArray track by curSkill.skillId">
+                        <td class="smallTD">{{curSkill.skillId}}</td>
+                        <td class="smallTD">{{curSkill.level}}</td>
+                        <td class="bigTD">{{curSkill.name}}</td>
+                        <td class="bigTD">
+                            <button type="button" class="btn btn-danger btn-sm" ng-click="updateSssStatus(curSkill.skillId, 'deactivate', $index)" ng-if="curSkill.sssStatus!='inactive'">Deactivate</button>
+                            <button type="button" class="btn btn-success btn-sm" ng-click="updateSssStatus(curSkill.skillId, 'activate', $index)" ng-if="curSkill.sssStatus=='inactive'">Activate</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

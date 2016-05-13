@@ -1,0 +1,94 @@
+<div>
+    <style>
+        .full button span {
+        background-color: limegreen;
+        border-radius: 32px;
+        color: black;
+        }
+        .partially button span {
+        background-color: orange;
+        border-radius: 32px;
+        color: black;
+        }
+    </style>
+    <h3 class="text-center classRoomHeader">Student Overview <br /> Classroom: {{currentClassName}} &nbsp;</h3>
+
+    <div class="studentContainer clearfix col-md-9" >
+        <div class="col-md-4"></div>
+        <div class="col-md-5">
+        <div class="student-block" ng-repeat="student in currentClassStudents track by student.id">
+            <h4 style="" class="studentNameTeachView">{{student.first_name}} {{student.last_name}}
+                <span class="dottedLine"></span>
+            <button type="button" class="viewMoreBtn" ng-click="load(student.id, $index)">
+                <span class="glyphicon " ng-class="{'glyphicon-plus': !student.showDetail, 'glyphicon-minus': student.showDetail}"></span>
+            </button>
+            </h4>
+            <div class="details" ng-show="student.showDetail">
+                <hr>
+                <div>
+                    <a class="btn btn-success manageSkillsBtn" ui-sref="assignSkills({id:student.id})">
+                        Manage Assigned Skills
+                    </a>
+                </div>
+
+                <form role="form" ng-submit="submitCustomRange()">
+                    <label>Date Range:</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="range" value="allTime" id="allTime" ng-model="$parent.selectedRange" checked> All Time
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="range" value="custom" ng-model="$parent.selectedRange"> Custom
+                    </label>
+
+                <!-- DATEPICKER -->
+                <div class="row" ng-if="selectedRange == 'custom'">
+                    <div class="col-md-6">
+                        <br />
+                        <label for="startDate">From:</label>
+                        <p class="input-group">
+                            <input type="text" id="startDate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dateHolder.mt" is-open="popup1.opened" datepicker-options="inlineOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" readonly/>
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                              </span>
+                        </p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <br />
+                        <label for="endDate">To:</label>
+                        <p class="input-group">
+                            <input type="text" id="endDate" class="form-control" uib-datepicker-popup ng-model="dateHolder2.mt" is-open="popup2.opened" datepicker-options="inlineOptions" ng-required="true" close-text="Close" readonly/>
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                              </span>
+                        </p>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-default" ng-if="selectedRange == 'custom'">Refresh Date Range</button>
+                    <!--<p>{{dt}}</p>
+                    <p>{{dt2}}</p>-->
+                </form>
+                <!-- END DATEPICKER -->
+
+                <br />
+                <div class="table-responsive animated"  >
+                    <table class="table table-striped skillsTable">
+                        <tr>
+                            <th>Skill Name</th>
+                            <th>Points</th>
+                        </tr>
+                        <tr ng-repeat="entry in skillInfo.skillPointsAndNames | orderBy: 'name'">
+                            <td>{{entry.name}}</td>
+                            <td>{{entry.points}}</td>
+                        </tr>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+</div>

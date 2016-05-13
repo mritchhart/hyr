@@ -1,0 +1,15 @@
+version: '2'
+services:
+    hoperanchlearningacademy-app:
+        image: hoperanchlearningacademy
+        external_links:
+            - hoperanchlearningacademy-mysql:mysql
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/hoperanchlearningacademy?useUnicode=true&characterEncoding=utf8&useSSL=false
+        ports:
+            - 8080:8080
+    hoperanchlearningacademy-mysql:
+        extends:
+            file: mysql.yml
+            service: hoperanchlearningacademy-mysql

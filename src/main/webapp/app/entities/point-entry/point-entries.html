@@ -1,0 +1,78 @@
+<div>
+    <h2 translate="hopeRanchLearningAcademyApp.point_entry.home.title">Point Entries</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="point-entry.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="hopeRanchLearningAcademyApp.point_entry.home.createLabel">
+                        Create new Point Entry
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="ent_value"><span translate="hopeRanchLearningAcademyApp.point_entry.ent_value">Ent Value</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="ent_status"><span translate="hopeRanchLearningAcademyApp.point_entry.ent_status">Ent Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="ent_submission_time"><span translate="hopeRanchLearningAcademyApp.point_entry.ent_submission_time">Ent Submission Time</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="ent_action_time"><span translate="hopeRanchLearningAcademyApp.point_entry.ent_action_time">Ent Action Time</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="teacher.last_name"><span translate="hopeRanchLearningAcademyApp.point_entry.teacher">Teacher</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="student.last_name"><span translate="hopeRanchLearningAcademyApp.point_entry.student">Student</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="social_skill.name"><span translate="hopeRanchLearningAcademyApp.point_entry.social_skill">Social Skill</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="point_entry in vm.point_entries track by point_entry.id">
+                    <td><a ui-sref="point-entry-detail({id:point_entry.id})">{{point_entry.id}}</a></td>
+                    <td>{{point_entry.ent_value}}</td>
+                    <td translate="{{'hopeRanchLearningAcademyApp.EntryStatus.' + point_entry.ent_status}}">{{point_entry.ent_status}}</td>
+                    <td>{{point_entry.ent_submission_time | date:'medium'}}</td>
+                    <td>{{point_entry.ent_action_time | date:'medium'}}</td>
+                    <td>
+                        <a ui-sref="teacher-detail({id:point_entry.teacher.id})">{{point_entry.teacher.last_name}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="student-detail({id:point_entry.student.id})">{{point_entry.student.last_name}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="social-skill-detail({id:point_entry.social_skill.id})">{{point_entry.social_skill.name}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="point-entry-detail({id:point_entry.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="point-entry.edit({id:point_entry.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="point-entry.delete({id:point_entry.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

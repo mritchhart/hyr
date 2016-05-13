@@ -1,0 +1,103 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myStudentLabel">Create or edit a Student</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.student.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.student.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="hopeRanchLearningAcademyApp.student.first_name" for="field_first_name">First Name</label>
+            <input type="text" class="form-control" name="first_name" id="field_first_name"
+                    ng-model="vm.student.first_name"
+                    required />
+            <div ng-show="editForm.first_name.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.first_name.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="hopeRanchLearningAcademyApp.student.last_name" for="field_last_name">Last Name</label>
+            <input type="text" class="form-control" name="last_name" id="field_last_name"
+                    ng-model="vm.student.last_name"
+                    required />
+            <div ng-show="editForm.last_name.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.last_name.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="hopeRanchLearningAcademyApp.student.grade_level" for="field_grade_level">Grade Level</label>
+            <input type="text" class="form-control" name="grade_level" id="field_grade_level"
+                    ng-model="vm.student.grade_level"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_goal">Goal</label>
+            <input type="text" class="form-control" name="goal" id="field_goal"
+                    ng-model="vm.student.goal"
+                     />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setPhoto($file, vm.student)" ngf-pattern="'image/*'">
+            <label class="control-label" for="field_photo">Photo</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.student.photoContentType + ';base64,' + vm.student.photo}}" style="max-height: 100px;" ng-if="vm.student.photo"/>
+                <div class="help-block clearfix">
+                    <span class="pull-left">{{vm.student.photoContentType}}, {{byteSize(vm.student.photo)}}</span>
+                    <button ng-click="vm.student.photo=null;vm.student.photoContentType=null;"
+                            ng-if="vm.student.photo"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="file" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setPhoto($file, vm.student)" accept="image/*">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="photo" id="field_photo"
+                    ng-model="vm.student.photo"
+                     />
+            <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+                    ng-model="vm.student.photoContentType" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="hopeRanchLearningAcademyApp.student.total_points" for="field_total_points">Total Points</label>
+            <input type="number" class="form-control" name="total_points" id="field_total_points"
+                    ng-model="vm.student.total_points"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="hopeRanchLearningAcademyApp.student.reward_points" for="field_reward_points">Reward Points</label>
+            <input type="number" class="form-control" name="reward_points" id="field_reward_points"
+                    ng-model="vm.student.reward_points"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label for="field_classroom">Classroom</label>
+            <select class="form-control" id="field_classroom" name="classroom" ng-model="vm.student.classroom" ng-options="classroom as classroom.name for classroom in vm.classrooms track by classroom.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

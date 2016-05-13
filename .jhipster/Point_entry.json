@@ -1,0 +1,49 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "teacher",
+            "otherEntityName": "teacher",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "last_name"
+        },
+        {
+            "relationshipName": "student",
+            "otherEntityName": "student",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "last_name"
+        },
+        {
+            "relationshipName": "social_skill",
+            "otherEntityName": "social_skill",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "ent_value",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ent_status",
+            "fieldType": "EntryStatus",
+            "fieldValues": "approved, denied"
+        },
+        {
+            "fieldName": "ent_submission_time",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "ent_action_time",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20160504174434",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "point_entry",
+    "pagination": "pagination"
+}

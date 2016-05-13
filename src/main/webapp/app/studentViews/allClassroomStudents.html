@@ -1,0 +1,33 @@
+
+<div>
+
+    <h3 class="text-center classRoomHeader">Classroom: {{currentClassName}} &nbsp; | &nbsp; Teacher: {{teacherName}}</h3>
+
+    <div class="studentContainer2 clearfix" >
+        <div class="student-block2" ng-repeat="student in students | filter: classID track by student.id">
+            <div class="media">
+                <div class="media-left media-middle">
+                    <!--<a ui-sref="studentProfile({id:student.id})">
+                        <img class="media-object" src="assets/images/person-placeholder.jpg" alt="student image" height="100" width="100">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h3 class="media-heading">{{student.first_name}} {{student.last_name}}</h3>
+                </div>-->
+                    <ul>
+                        <a ui-sref="studentProfile({id:student.id})">
+                            <img class="morphProfilePic" ng-src="data:image/jpeg;base64,{{student.photo}}" alt="student image" height="175" width="175" ng-if="student.photo != null">
+                            <img class="morphProfilePic" src="content/images/person-placeholder.jpg" alt="student image" height="175" width="175" ng-if="student.photo == null">
+                        </a>
+                        <li>
+                            <a ui-sref="studentProfile({id:student.id})">
+                            {{student.first_name}} {{student.last_name}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

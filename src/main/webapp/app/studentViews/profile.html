@@ -1,0 +1,37 @@
+
+<div class="clearfix">
+    <!--<h3 class="">Student Progress</h3>-->
+    <div class="profileContainer">
+    <img class="profilePic" ng-src="data:image/jpeg;base64,{{student.photo}}" alt="student image" height="140" width="140" ng-if="student.photo != null">
+    <img class="profilePic" ng-src="content/images/person-placeholder.jpg" alt="student image" height="140" width="140" ng-if="student.photo == null">
+    <h2 class="profileHeader">{{student.first_name}} {{student.last_name}}</h2>
+    <h4 class="profileHeader">Goal: {{student.goal}}</h4>
+    </div>
+    <div class="clearfix skillsContainer">
+        <h3>{{student.first_name}}'s Active Skills
+            <span ng-click="expandSkillTable = !expandSkillTable">
+                <i class="glyphicon " ng-class="{'glyphicon-plus': expandSkillTable, 'glyphicon-minus': !expandSkillTable}" ></i>
+            </span>
+        </h3>
+        <div class="table-responsive animated" ng-class="{'fadeOut': !expandSkillTable, 'fadeIn': expandSkillTable}" ng-show="expandSkillTable">
+            <table class="table table-striped skillsTable">
+                <tr>
+                    <th>Skill Name</th>
+                    <th>Points</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="entry in skillInfo.skillPointsAndNames | orderBy: 'name'">
+                    <td>{{entry.name}}</td>
+                    <td count-to="{{entry.newPtValue}}" value="{{entry.points}}" duration="4"></td>
+                    <td>
+                        <button type="button" class="btn btn-success btn-sm updatePtsBtns" ng-click="open(entry.name, 'add', entry.skillId )">Add</button>
+                        <button type="button" class="btn btn-danger btn-sm updatePtsBtns" ng-click="open(entry.name, 'subtract', entry.skillId)">Subtract</button>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+

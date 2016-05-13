@@ -1,0 +1,35 @@
+
+        <div class="modal-header" style="text-align:center;">
+            <button type="button" class="close" data-dismiss="modal" ng-click="cancel()">&times;</button>
+            <h4 class="modal-title modalFont" ng-if="modalData.action =='add'">
+                Add Points<br />
+                {{modalData.skillName}}
+            </h4>
+            <h4  class="modal-title modalFont" ng-if="modalData.action =='subtract'">
+                Subtract Points<br />
+                {{modalData.skillName}}
+            </h4>
+        </div>
+        <div id="updatePoints" class="modal-body" ng-class="{greenBg: modalData.action == 'add', redBg: modalData.action == 'subtract'}">
+            <div id="addinput" class="modalInputAmt add" ng-if="modalData.action == 'add' && !showImg " >
+                <label for="addAmount">Points</label>
+                <input type="number" placeholder="Enter Points" id="addAmount" ng-model="point_Entry.ent_value" />
+            </div>
+            <div class="modalInputAmt subtract" ng-if="modalData.action == 'subtract' && !showImg ">
+
+                    <label for="subtractAmount">Points</label>
+                    <input type="number" placeholder="Enter Points" id="subtractAmount" ng-model="point_Entry.ent_value" />
+
+            </div>
+            <div class="modalInputAmt" ng-if="modalData.action == 'add' && showImg">
+                <img class=" img-responsive modal-image-array" ng-src="{{happyImgUrl}}">
+            </div>
+
+        </div>
+        <div class="modal-footer" ng-if="!showImg">
+            <button class="btn btn-primary" type="button" ng-click="saveEntry()">Save</button>
+            <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+
+
+

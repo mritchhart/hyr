@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+   <changeSet author="force (generated)" id="1462389625558-1">
+      <addColumn tableName="teacher">
+         <column name="email" type="varchar(255)">
+            <constraints nullable="false"/>
+         </column>
+      </addColumn>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462389625558-2">
+      <dropDefaultValue columnDataType="timestamp"
+                        columnName="created_date"
+                        tableName="jhi_user"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462389625558-3">
+      <dropDefaultValue columnDataType="timestamp"
+                        columnName="ent_action_time"
+                        tableName="point_entry"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462389625558-4">
+      <dropDefaultValue columnDataType="timestamp"
+                        columnName="ent_submission_time"
+                        tableName="point_entry"/>
+   </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span>Teacher</span> {{vm.teacher.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span translate="hopeRanchLearningAcademyApp.teacher.first_name">First Name</span></dt>
+        <dd>
+            <span>{{vm.teacher.first_name}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="hopeRanchLearningAcademyApp.teacher.last_name">Last Name</span></dt>
+        <dd>
+            <span>{{vm.teacher.last_name}}</span>
+        </dd>
+        <hr>
+        <dt><span>Pin</span></dt>
+        <dd>
+            <span>{{vm.teacher.pin}}</span>
+        </dd>
+        <hr>
+        <dt><span>Notes</span></dt>
+        <dd>
+            <span>{{vm.teacher.notes}}</span>
+        </dd>
+        <hr>
+        <dt><span>Email</span></dt>
+        <dd>
+            <span>{{vm.teacher.email}}</span>
+        </dd>
+        <hr>
+        <dt><span>Classroom</span></dt>
+        <dd>
+            <a ui-sref="classroom-detail({id:vm.teacher.classroom.id})">{{vm.teacher.classroom.name}}</a>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

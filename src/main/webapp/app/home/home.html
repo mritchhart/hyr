@@ -1,0 +1,104 @@
+<div ng-cloak>
+    <div class="row">
+
+        <!--Teacher View when authenticated-->
+
+        <div class="col-md-12" ng-switch="isAuthenticated()">
+            <div class="alert alert-success col-md-12 text-center" ng-switch-when="true">
+                <h4 ng-if="account.authorities[0] == 'ROLE_USER' && account.login != 'admin' ">Welcome, {{teacherName}}!</h4>
+                <span>You are logged in as user "{{account.login}}".</span>
+
+                <!--<div  ng-init="pinInput" ng-if=!teacherPinConfirm >
+
+                    </br>
+
+                    <input type="number" placeholder="Enter Pin"  ng-model="pinInput" />
+                    </br>
+                    <button class="btn btn-primary"  type="button" ng-click="verifyTeachPin(pinInput)">I am {{teacherName}}</button>
+
+                    <div ng-if=teacherPinFail >
+                        </br>
+                        <span><h4 class="alert alert-danger">Teacher Use Only</h4></span>
+                    </div>
+
+                </div>-->
+
+
+            </div>
+        </div>
+        <div >
+            <!--Display HYR Photo if authenticated-->
+
+            <div ng-switch="isAuthenticated()">
+
+                <div class="homeImage">
+                    <span class="hipster col-md-5 img-responsive img-rounded"></span>
+                </div>
+
+                <div class="alert alert-warning" ng-switch-when="false">
+                    If you want to <a class="alert-link" href="#/login">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
+                </div>
+
+                <div class="alert alert-warning" ng-switch-when="false">
+                    You don't have an account yet? <a class="alert-link" href="#/register">Register a new account</a>
+                </div>
+
+                <!--Teacher View-->
+
+                <div ng-switch-when="true" class="col-md-5 " ng-if="account.authorities[0] == 'ROLE_USER' && account.login != 'admin' ">
+
+
+                    <div >
+
+                        <a href="#/classrooms/allStudents">
+                            <img class="teach-button img-responsive" src="content/images/Students_button2.png" />
+                        </a>
+
+                    </div>
+                    <br />
+
+                    <div> <!--ng-if=teacherPinConfirm-->
+                        <div>
+                            <a href="#/classrooms/students">
+
+                                <img class="teach-button img-responsive" src="content/images/teacher_button.png"/>
+                            </a>
+                        </div>
+                        <br />
+
+                        <div>
+                            <a  href="#/reviewEntries">
+                                <img class="teach-button img-responsive" src="content/images/Teacher_Review_Obs_button.png"/>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!--Admin View -->
+
+                <div ng-switch-when="true" class="teacherButtons col-md-7 " ng-if="account.authorities[0] == 'ROLE_USER' && account.login == 'admin' "ng-if="account.authorities[0] == 'ROLE_USER' && account.login != 'admin' ">
+                    <h4>Admin Dashboard</h4>
+                </div>
+
+            </div>
+
+            <!--<p>
+                If you have any question on JHipster:
+            </p>
+
+            <ul>
+                <li><a href="http://jhipster.github.io/" target="_blank">JHipster homepage</a></li>
+                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank">JHipster on Stack Overflow</a></li>
+                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank">JHipster bug tracker</a></li>
+                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank">JHipster public chat room</a></li>
+                <li><a href="https://twitter.com/java_hipster" target="_blank" >contact @java_hipster on Twitter</a></li>
+            </ul>
+
+            <p>
+             <span>If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank">Github</a>!
+            </p>-->
+        </div>
+    </div>
+</div>

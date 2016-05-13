@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160503150324_added_entity_Classroom.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160503151438_added_entity_Teacher.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160503152424_added_entity_Social_skill.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160504172901_added_entity_Student.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160504173820_added_entity_Student_social_skill.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160504174434_added_entity_Point_entry.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="classpath:config/liquibase/changelog/20160503151438_added_entity_constraints_Teacher.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160504172901_added_entity_constraints_Student.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160504173820_added_entity_constraints_Student_social_skill.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160504174434_added_entity_constraints_Point_entry.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

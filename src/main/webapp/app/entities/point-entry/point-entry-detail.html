@@ -1,0 +1,48 @@
+
+<div>
+    <h2><span translate="hopeRanchLearningAcademyApp.point_entry.detail.title">Point Entry</span> {{vm.point_entry.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span translate="hopeRanchLearningAcademyApp.point_entry.ent_value">Ent Value</span></dt>
+        <dd>
+            <span>{{vm.point_entry.ent_value}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="hopeRanchLearningAcademyApp.point_entry.ent_status">Ent Status</span></dt>
+        <dd>
+            <span translate="{{'hopeRanchLearningAcademyApp.EntryStatus.' + vm.point_entry.ent_status}}">{{vm.point_entry.ent_status}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="hopeRanchLearningAcademyApp.point_entry.ent_submission_time">Ent Submission Time</span></dt>
+        <dd>
+            <span>{{vm.point_entry.ent_submission_time | date:'medium'}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="hopeRanchLearningAcademyApp.point_entry.ent_action_time">Ent Action Time</span></dt>
+        <dd>
+            <span>{{vm.point_entry.ent_action_time | date:'medium'}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="hopeRanchLearningAcademyApp.point_entry.teacher">Teacher</span></dt>
+        <dd>
+            <a ui-sref="teacher-detail({id:vm.point_entry.teacher.id})">{{vm.point_entry.teacher.last_name}}</a>
+        </dd>
+        <hr>
+        <dt><span translate="hopeRanchLearningAcademyApp.point_entry.student">Student</span></dt>
+        <dd>
+            <a ui-sref="student-detail({id:vm.point_entry.student.id})">{{vm.point_entry.student.last_name}}</a>
+        </dd>
+        <hr>
+        <dt><span translate="hopeRanchLearningAcademyApp.point_entry.social_skill">Social Skill</span></dt>
+        <dd>
+            <a ui-sref="social-skill-detail({id:vm.point_entry.social_skill.id})">{{vm.point_entry.social_skill.name}}</a>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

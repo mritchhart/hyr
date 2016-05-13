@@ -1,0 +1,64 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "classroom",
+            "otherEntityName": "classroom",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipName": "student_social_skill",
+            "otherEntityName": "student_social_skill",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "student"
+        },
+        {
+            "relationshipName": "point_entry",
+            "otherEntityName": "point_entry",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "student"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "first_name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "last_name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "grade_level",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "goal",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "photo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "total_points",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "reward_points",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20160504172901",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "student",
+    "pagination": "pagination"
+}

@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+   <changeSet author="force (generated)" id="1462390194577-1">
+      <createTable tableName="classroom">
+         <column autoIncrement="true" name="id" type="BIGINT">
+            <constraints primaryKey="true" primaryKeyName="classroomPK"/>
+         </column>
+         <column name="campus" type="VARCHAR(255)"/>
+         <column name="name" type="VARCHAR(255)"/>
+         <column name="type" type="VARCHAR(255)"/>
+      </createTable>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-2">
+      <createTable tableName="jhi_authority">
+         <column name="name" type="VARCHAR(50)">
+            <constraints nullable="false"/>
+         </column>
+      </createTable>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-3">
+      <createTable tableName="jhi_persistent_audit_event">
+         <column autoIncrement="true" name="event_id" type="BIGINT">
+            <constraints primaryKey="true" primaryKeyName="jhi_persistent_audit_eventPK"/>
+         </column>
+         <column name="event_date" type="timestamp"/>
+         <column name="event_type" type="VARCHAR(255)"/>
+         <column name="principal" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+      </createTable>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-4">
+      <createTable tableName="jhi_persistent_audit_evt_data">
+         <column name="event_id" type="BIGINT">
+            <constraints nullable="false"/>
+         </column>
+         <column name="value" type="VARCHAR(255)"/>
+         <column name="name" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+      </createTable>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-5">
+      <createTable tableName="jhi_persistent_token">
+         <column name="series" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="ip_address" type="VARCHAR(39)"/>
+         <column name="token_date" type="date"/>
+         <column name="token_value" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="user_agent" type="VARCHAR(255)"/>
+         <column name="user_id" type="BIGINT"/>
+      </createTable>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-6">
+      <createTable tableName="jhi_user">
+         <column autoIncrement="true" name="id" type="BIGINT">
+            <constraints primaryKey="true" primaryKeyName="jhi_userPK"/>
+         </column>
+         <column name="created_by" type="VARCHAR(50)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="created_date" type="timestamp">
+            <constraints nullable="false"/>
+         </column>
+         <column name="last_modified_by" type="VARCHAR(50)"/>
+         <column name="last_modified_date" type="timestamp"/>
+         <column name="activated" type="BOOLEAN">
+            <constraints nullable="false"/>
+         </column>
+         <column name="activation_key" type="VARCHAR(20)"/>
+         <column name="email" type="VARCHAR(100)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="first_name" type="VARCHAR(50)"/>
+         <column name="lang_key" type="VARCHAR(5)"/>
+         <column name="last_name" type="VARCHAR(50)"/>
+         <column name="login" type="VARCHAR(50)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="password_hash" type="VARCHAR(60)"/>
+         <column name="reset_date" type="timestamp"/>
+         <column name="reset_key" type="VARCHAR(20)"/>
+      </createTable>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-7">
+      <createTable tableName="jhi_user_authority">
+         <column name="user_id" type="BIGINT">
+            <constraints nullable="false"/>
+         </column>
+         <column name="authority_name" type="VARCHAR(50)">
+            <constraints nullable="false"/>
+         </column>
+      </createTable>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-8">
+      <createTable tableName="point_entry">
+         <column autoIncrement="true" name="id" type="BIGINT">
+            <constraints primaryKey="true" primaryKeyName="point_entryPK"/>
+         </column>
+         <column name="ent_action_time" type="timestamp"/>
+         <column name="ent_status" type="VARCHAR(255)"/>
+         <column name="ent_submission_time" type="timestamp"/>
+         <column name="ent_value" type="INT">
+            <constraints nullable="false"/>
+         </column>
+         <column name="social_skill_id" type="BIGINT"/>
+         <column name="student_id" type="BIGINT"/>
+         <column name="teacher_id" type="BIGINT"/>
+      </createTable>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-9">
+      <createTable tableName="social_skill">
+         <column autoIncrement="true" name="id" type="BIGINT">
+            <constraints primaryKey="true" primaryKeyName="social_skillPK"/>
+         </column>
+         <column name="description" type="VARCHAR(255)"/>
+         <column name="level" type="VARCHAR(255)"/>
+         <column name="name" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+      </createTable>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-10">
+      <createTable tableName="student">
+         <column autoIncrement="true" name="id" type="BIGINT">
+            <constraints primaryKey="true" primaryKeyName="studentPK"/>
+         </column>
+         <column name="first_name" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="goal" type="VARCHAR(255)"/>
+         <column name="grade_level" type="VARCHAR(255)"/>
+         <column name="last_name" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="photo" type="BLOB"/>
+         <column name="photo_content_type" type="VARCHAR(255)"/>
+         <column name="reward_points" type="INT"/>
+         <column name="total_points" type="INT"/>
+         <column name="classroom_id" type="BIGINT"/>
+      </createTable>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-11">
+      <createTable tableName="student_social_skill">
+         <column autoIncrement="true" name="id" type="BIGINT">
+            <constraints primaryKey="true" primaryKeyName="student_social_skillPK"/>
+         </column>
+         <column name="end_date" type="date"/>
+         <column name="gross_pts" type="INT"/>
+         <column name="net_pts" type="INT"/>
+         <column name="start_date" type="date"/>
+         <column name="status" type="VARCHAR(255)"/>
+         <column name="social_skill_id" type="BIGINT"/>
+         <column name="student_id" type="BIGINT"/>
+      </createTable>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-12">
+      <createTable tableName="teacher">
+         <column autoIncrement="true" name="id" type="BIGINT">
+            <constraints primaryKey="true" primaryKeyName="teacherPK"/>
+         </column>
+         <column name="email" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="first_name" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="last_name" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="notes" type="VARCHAR(255)"/>
+         <column name="pin" type="INT">
+            <constraints nullable="false"/>
+         </column>
+         <column name="classroom_id" type="BIGINT"/>
+      </createTable>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-13">
+      <addPrimaryKey columnNames="event_id, name" tableName="jhi_persistent_audit_evt_data"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-14">
+      <addPrimaryKey columnNames="user_id, authority_name" tableName="jhi_user_authority"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-15">
+      <addPrimaryKey columnNames="name"
+                     constraintName="jhi_authorityPK"
+                     tableName="jhi_authority"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-16">
+      <addPrimaryKey columnNames="series"
+                     constraintName="jhi_persistent_tokenPK"
+                     tableName="jhi_persistent_token"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-17">
+      <addUniqueConstraint columnNames="email"
+                           constraintName="UC_JHI_USEREMAIL_COL"
+                           tableName="jhi_user"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-18">
+      <addUniqueConstraint columnNames="login"
+                           constraintName="UC_JHI_USERLOGIN_COL"
+                           tableName="jhi_user"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-19">
+      <addForeignKeyConstraint baseColumnNames="classroom_id"
+                               baseTableName="teacher"
+                               constraintName="FK_73fb24mbcmvgpsxrm4d5vmwt7"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="classroom"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-20">
+      <addForeignKeyConstraint baseColumnNames="teacher_id"
+                               baseTableName="point_entry"
+                               constraintName="FK_8wbdwxakmtbe5x67ldptdi0ty"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="teacher"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-21">
+      <addForeignKeyConstraint baseColumnNames="classroom_id"
+                               baseTableName="student"
+                               constraintName="FK_avuhbsh56uvbxa2h2p5syuir6"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="classroom"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-22">
+      <addForeignKeyConstraint baseColumnNames="user_id"
+                               baseTableName="jhi_persistent_token"
+                               constraintName="FK_c2yetr6vr7nrqhjvi1rl24b3l"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="jhi_user"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-23">
+      <addForeignKeyConstraint baseColumnNames="student_id"
+                               baseTableName="student_social_skill"
+                               constraintName="FK_cmobcdntsfreusf89jonb75fw"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="student"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-24">
+      <addForeignKeyConstraint baseColumnNames="event_id"
+                               baseTableName="jhi_persistent_audit_evt_data"
+                               constraintName="FK_evb970jo5bi8aon8s65c0lyyn"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="event_id"
+                               referencedTableName="jhi_persistent_audit_event"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-25">
+      <addForeignKeyConstraint baseColumnNames="authority_name"
+                               baseTableName="jhi_user_authority"
+                               constraintName="FK_ik5r332jlvpolfr7e5n7oi42l"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="name"
+                               referencedTableName="jhi_authority"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-26">
+      <addForeignKeyConstraint baseColumnNames="social_skill_id"
+                               baseTableName="student_social_skill"
+                               constraintName="FK_k1u95dgm5k6n5uualu7oyfyx7"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="social_skill"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-27">
+      <addForeignKeyConstraint baseColumnNames="user_id"
+                               baseTableName="jhi_user_authority"
+                               constraintName="FK_pg0oaw6mr9pt3ibeihdc1jwof"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="jhi_user"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-28">
+      <addForeignKeyConstraint baseColumnNames="social_skill_id"
+                               baseTableName="point_entry"
+                               constraintName="FK_qfri8prsvti3o6iaqmf51g6su"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="social_skill"/>
+   </changeSet>
+   <changeSet author="force (generated)" id="1462390194577-29">
+      <addForeignKeyConstraint baseColumnNames="student_id"
+                               baseTableName="point_entry"
+                               constraintName="FK_rsgx8h7g3e73p14sg8f6xo9si"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="student"/>
+   </changeSet>
+</databaseChangeLog>

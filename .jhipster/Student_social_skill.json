@@ -1,0 +1,44 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "social_skill",
+            "otherEntityName": "social_skill",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipName": "student",
+            "otherEntityName": "student",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "last_name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "gross_pts",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "net_pts",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "start_date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "end_date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "active, inactive"
+        }
+    ],
+    "changelogDate": "20160504173820",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "student_social_skill",
+    "pagination": "pagination"
+}

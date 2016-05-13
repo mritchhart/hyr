@@ -1,0 +1,30 @@
+
+<div class="profileContainer clearfix">
+    <!--<h3 class="">Student Progress</h3>-->
+
+    <img class="profilePic" src="assets/images/person-placeholder.jpg" alt="student image" height="140" width="140">
+    <h2 class="profileHeader">{{student.first_name}} {{student.last_name}}</h2>
+    <h4 class="profileHeader">Goal: {{student.goal}}</h4>
+    <div class="clearfix skillsContainer">
+        <button type="button" class="btn btn-primary btn-sm teacherAsnBtn" ui-sref="assignStudentsAndSkills({id:student.id})">Assign Skills</button>
+        <button type="button" class="btn btn-primary btn-sm teacherReviewBtn">Redeem Points</button>
+        <h3>Student's Active Skills
+            <span ng-click="expandSkillTable = !expandSkillTable">
+                <i class="fa " ng-class="{'fa-minus-circle': expandSkillTable, 'fa-plus-circle': !expandSkillTable}" ></i>
+            </span>
+        </h3>
+        <div class="table-responsive animated" ng-class="{'fadeOut': !expandSkillTable, 'fadeIn': expandSkillTable}" ng-show="expandSkillTable">
+            <table class="table table-striped skillsTable">
+                <tr>
+                    <th>Skill Name</th>
+                    <th>Points</th>
+                </tr>
+                <tr ng-repeat="entry in skillInfo.skillPointsAndNames">
+                    <td>{{entry.name}}</td>
+                    <td>{{entry.points}}</td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
