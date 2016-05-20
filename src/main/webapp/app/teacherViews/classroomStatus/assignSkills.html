@@ -1,62 +1,10 @@
 <div class="skillParentContain">
-    <div class="skillAsnContainer col-lg-6">
-        <span style="color:red;">* Do not refresh this page *</span>
-        <h2>Manage Skills </h2>
+    <div class="skillAsnContainer col-lg-8">
+        <!-- <span style="color:red;">* Do not refresh this page *</span> -->
+        <h2 class="manageSkills">Manage Skills </h2>
         <jh-alert></jh-alert>
-    <div class="container-fluid">
-        <form class="form-horizontal" role="form">
-            <br />
-            <div class="form-group">
-                <label for="studentName" class="control-label col-sm-2">Student: </label>
-                <div class="col-sm-9">
-                    <h2 id="studentName">{{student.first_name}} {{student.last_name}}</h2>
-                </div>
-            </div>
-
-            <!--<div class="form-group">-->
-                <!--<label for="selectGrp" class="control-label col-sm-3">Skill Group:</label>-->
-                    <!--<div class="col-sm-3">-->
-                        <!--<select class="form-control" id="selectGrp">-->
-                            <!--<option>1</option>-->
-                            <!--<option>2</option>-->
-                            <!--<option>3</option>-->
-                            <!--<option>4</option>-->
-                        <!--</select>-->
-                    <!--</div>-->
-
-                <!--<label for="selectSkill" class="control-label col-sm-3">Skill Name:</label>-->
-                <!--<div class="col-sm-3">-->
-                    <!--<select class="form-control" id="selectSkill">-->
-                        <!--<option>Being Polite</option>-->
-                        <!--<option>Ask Permission</option>-->
-                    <!--</select>-->
-                <!--</div>-->
-            <!--</div>-->
-
-          <!--  THRESHOLDS -->
-
-            <!-- <div class="row">
-                <div class="form-group">
-                    <label for="redValue" class="redValue">Red if below: </label>
-                    <div class="controls">
-                        <input type="number" id="redValue" />
-                    </div>
-
-                    <label for="greenValue" class="greenValue">Green if above: </label>
-                    <div class="controls">
-                        <input type="number" id="greenValue" />
-                    </div>
-                    <div class="controls">
-                        <br />
-                        <input type="submit" value="Cancel" class="btn btn-primary">
-                        <input type="submit" value="Submit" class="btn btn-primary">
-                    </div>
-
-                </div>
-            </div> -->
-
-        </form>
-    </div>
+        <!-- <label for="studentName" class="control-label col-sm-2">Student: </label> -->
+        <h2 id="studentName" class="text-center">{{student.first_name}} {{student.last_name}}</h2>
 
         <div class="">
             <h3>Available Skills</h3>

@@ -36,6 +36,18 @@ Version number in navbar
     color: #ccc
 }
 
+.dashboardContainer {
+    width: 1000px;
+}
+
+.studentProfileContainer{
+    width: 750px;
+}
+
+.teacherManagementContainer{
+    width: 800px;
+}
+
 .teacherButtons {
     padding-left: 35px;
 }
@@ -122,6 +134,7 @@ to prevent collapsing during animation*/
     /*margin:0% 5.5% 0%;*/
     margin:0 auto;
     float: none;
+    padding-right: 75px;
 }
 .studentContainer2 {
     margin:0% 5.5% 0%;
@@ -170,7 +183,11 @@ to prevent collapsing during animation*/
 }
 
 .student-block button.viewMoreBtn {
-    margin-top: -8px;
+    margin-top: -5px;
+}
+
+.adminDashboardDB {
+    list-style-type: none;
 }
 
 .student-block img {
@@ -218,7 +235,7 @@ to prevent collapsing during animation*/
 }
 
 .details {
-    width: 400px;
+    width: 310px;
     margin: 0 auto;
     text-align:left;
 }
@@ -237,13 +254,32 @@ to prevent collapsing during animation*/
     box-shadow: 10px 10px 35px #888888;
 }
 
+ #rewardPoints {
+    padding-left: 10px;
+    padding-top:20px;
+    font-size: 50px;
+    color: #D4AF37;
+ }
+
+ .rewardPointsLabel {
+    padding-top: 25px;
+    padding-left: 20px;
+    float:left;
+    color: black;
+ }
+
 .profileContainer {
-    width: 400px;
+    width: 450px;
     margin: auto;
     font-family:"Showcard Gothic";
-        color: #337ab7;
+    color: #337ab7;
 }
 
+.skillsTableHeader {
+    font-family:"Showcard Gothic";
+    color: #013228;
+    text-align: left;
+}
 
 @media (max-width: 401px){
 .profileContainer{
@@ -267,15 +303,6 @@ to prevent collapsing during animation*/
     width: 450px;
     margin: auto;
     overflow: hidden;
-}
-
-.skillsContainer h3 {
-    clear: both;
-    width: 650px;
-    margin: auto;
-    font-family:"Showcard Gothic";
-    color: #013228;
-    text-align: center;
 }
 
 .skillsContainer span:focus {
@@ -336,6 +363,15 @@ to prevent collapsing during animation*/
     padding: 5px;
     margin: 15px 10px 0px 10px;
 }
+
+.reviewTable {
+    text-align: center;
+}
+
+.reviewTable tr th{
+    text-align: center;
+}
+
 /*
 .modal-content {
     display: inline-block;
@@ -383,7 +419,7 @@ box-shadow: 10px 10px 15px -12px rgba(0,0,0,0.75);
 Manage Skills Page - studentsByClassroom.html
 ========================================================================== */
 #studentName {
-    margin: 0;
+    margin-bottom: 50px;
 }
 
 .manageSkillsTable {
@@ -398,6 +434,10 @@ Manage Skills Page - studentsByClassroom.html
 
 .manageSkillsTable td.smallTD, th.smallTD {
     min-width: 60px;
+}
+
+.manageSkills {
+    color: #337ab7;
 }
 
 
@@ -418,9 +458,17 @@ Students by Classroom Page - studentsByClassroom.html
     margin:0 auto;
 }
 
+.assignSkillsContainer {
+    width: 900px;
+}
+
 .skillAsnContainer {
     margin:0 auto;
     float: none;
+}
+
+.skillAsnContainer h2, h3 {
+     text-align: center;
 }
 
 .viewMoreBtn {
@@ -435,9 +483,13 @@ Students by Classroom Page - studentsByClassroom.html
     text-align: left;
     margin-bottom: 5px;
     border-bottom: dotted 1px black;
-}.teacherButtons {
+    background-color: lightgrey;
+    padding: 5px;
+}
+
+.teacherButtons {
      padding-left: 35px;
- }
+}
 
  .teacherButtons h4 {
      font-weight: bold;
@@ -532,12 +584,6 @@ Students by Classroom Page - studentsByClassroom.html
  }
 
 
-
- .studentContainer {
-     /*margin:0% 5.5% 0%;*/
-     margin:0 auto;
-     float: none;
- }
  .studentContainer2 {
      margin:0% 5.5% 0%;
  }
@@ -584,9 +630,7 @@ Students by Classroom Page - studentsByClassroom.html
      text-align: center;
  }
 
- .student-block button.viewMoreBtn {
-     margin-top: -8px;
- }
+
 
  .student-block img {
      border-radius: 14px;
@@ -620,186 +664,12 @@ Students by Classroom Page - studentsByClassroom.html
      display: inline;
  }
 
- .clearfix {
-     overflow: auto;
- }
-
- .classRoomHeader {
-     margin-top: 0px;
-     margin-bottom: 35px;
-     padding:5px;
-     font-family:"Showcard Gothic";
-     color: #337ab7;
- }
-
- .details {
-     width: 400px;
-     margin: 0 auto;
-     text-align:left;
- }
 
 
- /* ==========================================================================
-  Profile Page - studentProfile.html
- ========================================================================== */
-
- #mainContent {
- -webkit-animation-duration: .4s;
-     -moz-animation-duration: .4s;
-     -ms-animation-duration: .4s;
-     animation-duration: .4s;
-
-     box-shadow: 10px 10px 35px #888888;
- }
-
- .profileContainer {
-     width: 400px;
-     margin: auto;
-     font-family:"Showcard Gothic";
-         color: #337ab7;
- }
-
-
- @media (max-width: 401px){
- .profileContainer{
-     width: 100%;
-
-     }
- }
-
- .profilePic {
-     float: left;
-     border-radius: 6px;
- }
-
- .profileHeader {
-     padding-left: 160px;
-     color: #013228;
- }
-
- .skillsContainer {
-     clear: both;
-     width: 450px;
-     margin: auto;
-     overflow: hidden;
- }
-
- .skillsContainer h3 {
-     clear: both;
-     width: 650px;
-     margin: auto;
-     font-family:"Showcard Gothic";
-     color: #013228;
-     text-align: center;
- }
-
- .skillsContainer span:focus {
-     outline:none;
- }
-
- .skillsTable {
-     /*max-width: 600px;*/
- }
-
- .skillsTable th {
-     font-size: 1.2em;
-     border-bottom: 3px;
- }
-
- .updatePtsBtns {
-     width: 70px;
- }
-
- .greenBg{
-     background-color: lightgreen;
- }
- .redBg{
-     background-color: #ffb2b2;
- }
-
- #updatePoints .modal-body {
-     vertical-align:middle;
- }
-
- #updatePoints label {
-     text-align:center;
- }
-
- .modalInputAmt.add {
-     margin: 0 auto;
-     width:225px;
- }
-
- .modalInputAmt.subtract {
-     margin: 0 auto;
-     width:245px;
- }
-
- .modal-footer {
-     text-align: center;
- }
-
- .modal-footer button {
-     /*width: 70px;*/
- }
-
- .teacherAsnBtn {
-     padding: 5px;
-     margin: 15px 10px 0px 0px;
- }
- .teacherReviewBtn {
-     padding: 5px;
-     margin: 15px 10px 0px 10px;
- }
- /*
- .modal-content {
-     display: inline-block;
-     margin:0 auto;
- }
- */
- .modalContainer {
-     width: 300px;
-    display: inline-block;
-    margin-left: 40%;
- }
- .modalFont{
-  font-family:"Showcard Gothic";
-     color: #013228;
-     text-align: center;
- }
- .titleDivider {
-   width: 100%;
-   border-top: 1px solid #f8f8f8;
-   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-   margin:0px;
- }
- #addAmount {
- -webkit-box-shadow: 10px 10px 15px -20px rgba(0,0,0,0.75);
- -moz-box-shadow: 10px 10px 15px -20px rgba(0,0,0,0.75);
- box-shadow: 10px 10px 15px -12px rgba(0,0,0,0.75);
-
- }
-
- #subtractAmount {
- -webkit-box-shadow: 10px 10px 15px -20px rgba(0,0,0,0.75);
- -moz-box-shadow: 10px 10px 15px -20px rgba(0,0,0,0.75);
- box-shadow: 10px 10px 15px -12px rgba(0,0,0,0.75);
-
- }
-
- .modal-image-array{
-
-  display: block;
-     margin: 0 auto;
-
- }
 
  /* ==========================================================================
  Manage Skills Page - studentsByClassroom.html
  ========================================================================== */
- #studentName {
-     margin: 0;
- }
 
  .manageSkillsTable {
      max-height: 220px;
@@ -821,7 +691,7 @@ Students by Classroom Page - studentsByClassroom.html
  ========================================================================== */
  .manageSkillsBtn {
      margin-bottom: 30px;
-     min-width: 300px;
+     min-width: 240px;
  }
 
  .form-control {
@@ -833,23 +703,12 @@ Students by Classroom Page - studentsByClassroom.html
      margin:0 auto;
  }
 
- .skillAsnContainer {
-     margin:0 auto;
-     float: none;
- }
-
  .viewMoreBtn {
      float: right;
  }
 
  .dottedLine {
      border-bottom: solid 1px black;
- }
-
- .studentNameTeachView {
-     text-align: left;
-     margin-bottom: 5px;
-     border-bottom: dotted 1px black;
  }
 
 
@@ -886,9 +745,11 @@ Browser Upgrade Prompt
 }
 
 .hipster {
+    margin-top: 30px;
+    margin-left: 60px;
     display: inline-block;
     width: 347px;
-    height: 337px;
+    height: 307px;
     background: url("../images/logo_trans.gif") no-repeat center top;
     background-size: contain;
 }

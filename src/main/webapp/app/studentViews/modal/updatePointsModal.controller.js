@@ -118,6 +118,8 @@ angular.module('hopeRanchLearningAcademyApp').controller('ModalInstanceCtrl', fu
         $scope.getFullSssObj();
     };
 
+
+
     var onSaveSuccess = function (result) {
         $scope.$emit('hopeYouthRanchApp:point_EntryUpdate', result);
         var newSkillPtsAndId = {}
@@ -125,6 +127,7 @@ angular.module('hopeRanchLearningAcademyApp').controller('ModalInstanceCtrl', fu
         newSkillPtsAndId.id = $scope.modalData.skillId;
         $uibModalInstance.close(newSkillPtsAndId);
         $scope.isSaving = false;
+
     };
 
     var onSaveError = function (result) {
@@ -135,17 +138,14 @@ angular.module('hopeRanchLearningAcademyApp').controller('ModalInstanceCtrl', fu
     $scope.save = function () {
         $scope.isSaving = true;
 //        console.log(pointVal);
-
         console.log($scope.point_Entry);
-
         if ($scope.point_Entry.id != null) {
             Point_entry.update($scope.point_Entry, onSaveSuccess, onSaveError);
         } else {
+            // Save New Point Entry Record
             Point_entry.save($scope.point_Entry, onSaveSuccess, onSaveError);
         }
     };
-
-
 
     $scope.ok = function () {
         /*$uibModalInstance.close($scope.selected.item);*/
@@ -155,7 +155,6 @@ angular.module('hopeRanchLearningAcademyApp').controller('ModalInstanceCtrl', fu
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
-
 
 
     });

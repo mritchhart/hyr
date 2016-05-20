@@ -78,8 +78,56 @@
 
                 <!--Admin View -->
 
-                <div ng-switch-when="true" class="teacherButtons col-md-7 " ng-if="account.authorities[0] == 'ROLE_USER' && account.login == 'admin' "ng-if="account.authorities[0] == 'ROLE_USER' && account.login != 'admin' ">
-                    <h4>Admin Dashboard</h4>
+                <div ng-switch-when="true" class="teacherButtons col-md-6 " ng-if="account.authorities[0] == 'ROLE_USER' && account.login == 'admin' "ng-if="account.authorities[0] == 'ROLE_USER' && account.login != 'admin' ">
+                    <div>
+                        <h4>User Management</h4>
+                        <p>Manage all users who have registered an account.</p>
+                        <button class="btn btn-primary" ui-sref="user-management">User Management</button>
+                    </div>
+                    <br /><br />
+                    <div>
+                        <h4>Database Tables</h4>
+                        <p>Click a table from the list bellow to create, edit, or delete any database record</p>
+                        <ul class="adminDashboardDB">
+                            <li ui-sref-active="active" >
+                                <a ui-sref="classroom" ng-click="vm.collapseNavbar()">
+                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                    <span >Classroom</span>
+                                </a>
+                            </li>
+                            <li ui-sref-active="active" >
+                                <a ui-sref="teacher" ng-click="vm.collapseNavbar()">
+                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                    <span >Teacher</span>
+                                </a>
+                            </li>
+                            <li ui-sref-active="active" >
+                                <a ui-sref="social-skill" ng-click="vm.collapseNavbar()">
+                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                    <span >Social Skill</span>
+                                </a>
+                            </li>
+                            <li ui-sref-active="active" >
+                                <a ui-sref="student" ng-click="vm.collapseNavbar()">
+                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                    <span >Student</span>
+                                </a>
+                            </li>
+                            <li ui-sref-active="active" >
+                                <a ui-sref="student-social-skill" ng-click="vm.collapseNavbar()">
+                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                    <span >Student Social Skill</span>
+                                </a>
+                            </li>
+                            <li ui-sref-active="active" >
+                                <a ui-sref="point-entry" ng-click="vm.collapseNavbar()">
+                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                    <span >Point Entry</span>
+                                </a>
+                            </li>
+                            <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                        </ul>
+                    </div>
                 </div>
 
             </div>

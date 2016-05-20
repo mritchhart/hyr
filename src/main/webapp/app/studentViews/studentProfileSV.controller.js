@@ -7,6 +7,7 @@ angular.module('hopeRanchLearningAcademyApp')
         $scope.load = function (id) {
             Student.get({id: id}, function(result) {
                 $scope.student = result;
+                $scope.newRewardPts = $scope.student.reward_points;
                 console.log($scope.student);
                 $scope.getSkillIds($scope.student.id);
             });
@@ -58,17 +59,34 @@ angular.module('hopeRanchLearningAcademyApp')
             });
         };
 
-
-/*        handleSuccess = function(successResult) {
-            $scope.currentStudent = successResult;
-            $scope.getSkillIds($scope.currentStudent.id);
-        }*/
-
-//        $scope.getSkillIds($scope.student.id);
-        /*$scope.getSkillData(1,1);*/
-//        console.log($scope.student.id);
         console.log($scope.skillInfo);
 
+        var rewardUpdateSuccess = function (result) {
+            console.log("Reward Points Successfully Updated");
+    //        $scope.isSaving = false;
+        };
+
+        var rewardUpdateError = function (result) {
+            console.log("Reward Points FAILED to Update");
+    //        $scope.isSaving = false;
+        };
+
+        var updateStudentRewardPts = function(pointsToAdd) {
+
+            $scope.pointsToAdd = pointsToAdd
+            console.log("updated Student Record Before:");
+            console.log($scope.student);
+            $scope.student.total_points = $scope.modalData.student.total_points + pointsToAdd;
+            $scope.newRewardPts = $scope.modalData.student.reward_points + pointsToAdd;
+            $timeout(function() {
+                //update reward points
+                $scope.student.reward_points = $scope.student.reward_points + pointsToAdd;
+                console.log("updated Student Record After:");
+                console.log($scope.student);
+                Student.update($scope.student, rewardUpdateSuccess, rewardUpdateError);
+            }, 4100);
+
+        };
 
         $scope.open = function (skillName, action, skillId) {
             $scope.modalData = {};
@@ -102,6 +120,10 @@ angular.module('hopeRanchLearningAcademyApp')
             if (newSkillPtsAndId == "noSubmission") {
                 //no submission made, no nothing
             } else { //submission made, update points
+
+                // Update Student Total Points and Reward Points
+                updateStudentRewardPts(newSkillPtsAndId.points);
+
                 console.log("preparing to recalculate points, current skill objects below");
                 console.log($scope.skillInfo.skillPointsAndNames);
                 var newSkillPtsAndId = newSkillPtsAndId;

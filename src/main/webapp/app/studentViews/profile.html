@@ -2,15 +2,17 @@
 <div class="clearfix">
     <!--<h3 class="">Student Progress</h3>-->
     <div class="profileContainer">
-    <img class="profilePic" ng-src="data:image/jpeg;base64,{{student.photo}}" alt="student image" height="140" width="140" ng-if="student.photo != null">
-    <img class="profilePic" ng-src="content/images/person-placeholder.jpg" alt="student image" height="140" width="140" ng-if="student.photo == null">
-    <h2 class="profileHeader">{{student.first_name}} {{student.last_name}}</h2>
-    <h4 class="profileHeader">Goal: {{student.goal}}</h4>
+        <img class="profilePic" ng-src="data:image/jpeg;base64,{{student.photo}}" alt="student image" height="140" width="140" ng-if="student.photo != null">
+        <img class="profilePic" ng-src="content/images/person-placeholder.jpg" alt="student image" height="140" width="140" ng-if="student.photo == null">
+        <h2 class="profileHeader">{{student.first_name}} {{student.last_name}}</h2>
+        <h4 class="profileHeader">Goal: {{student.goal}}</h4>
+        <label for="rewardPoints" class="rewardPointsLabel">Reward Points: </label>
+        <span id="rewardPoints" count-to="{{newRewardPts}}" value="{{student.reward_points}}" duration="4"></span>
     </div>
-    <div class="clearfix skillsContainer">
-        <h3>{{student.first_name}}'s Active Skills
+    <div class="skillsContainer">
+        <h3 class="skillsTableHeader">Active Skills
             <span ng-click="expandSkillTable = !expandSkillTable">
-                <i class="glyphicon " ng-class="{'glyphicon-plus': expandSkillTable, 'glyphicon-minus': !expandSkillTable}" ></i>
+                <i class="glyphicon " ng-class="{'glyphicon-minus': expandSkillTable, 'glyphicon-plus': !expandSkillTable}" ></i>
             </span>
         </h3>
         <div class="table-responsive animated" ng-class="{'fadeOut': !expandSkillTable, 'fadeIn': expandSkillTable}" ng-show="expandSkillTable">
@@ -18,7 +20,7 @@
                 <tr>
                     <th>Skill Name</th>
                     <th>Points</th>
-                    <th></th>
+                    <th>Options</th>
                 </tr>
                 <tr ng-repeat="entry in skillInfo.skillPointsAndNames | orderBy: 'name'">
                     <td>{{entry.name}}</td>

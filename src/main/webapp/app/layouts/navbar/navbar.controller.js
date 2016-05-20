@@ -5,10 +5,12 @@
         .module('hopeRanchLearningAcademyApp')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$state', 'Auth', 'Principal', 'ENV', 'LoginService'];
+    NavbarController.$inject = ['$state', 'Auth', 'Principal', 'ENV', 'LoginService', '$rootScope'];
 
-    function NavbarController ($state, Auth, Principal, ENV, LoginService) {
+    function NavbarController ($state, Auth, Principal, ENV, LoginService, $rootScope) {
         var vm = this;
+
+        $rootScope.$state = $state;
 
         vm.isNavbarCollapsed = true;
         vm.isAuthenticated = Principal.isAuthenticated;

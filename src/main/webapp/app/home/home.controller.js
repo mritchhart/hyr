@@ -5,10 +5,12 @@
         .module('hopeRanchLearningAcademyApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'Teacher'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'Teacher', '$rootScope'];
 
-    function HomeController ($scope, Principal, LoginService, $state, Teacher) {
+    function HomeController ($scope, Principal, LoginService, $state, Teacher, $rootScope) {
         var vm = this;
+
+        $rootScope.$state = $state;
 
         vm.account = null;
         vm.isAuthenticated = null;
@@ -45,7 +47,7 @@
             for (var i=0;i<teachers.length;i++){
             console.log(teachers[i]);
             console.log(teachers[i].email);
-            console.log(vm.account.email);
+//            console.log(vm.account.email);
                 if (teachers[i].email.toLowerCase() == vm.account.email.toLowerCase()){
                     $scope.currentClassID =  teachers[i].classroom.id;
                     $scope.currentClassName = teachers[i].classroom.name;

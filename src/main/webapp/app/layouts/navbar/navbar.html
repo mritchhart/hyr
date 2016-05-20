@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default" role="navigation">
-    <div class="container">
+    <div class="container" ng-class="{dashboardContainer: $state.current.name === 'home'}">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" ng-click="vm.toggleNavbar()">
                 <span class="sr-only">Toggle navigation</span>
@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#/" ng-click="vm.collapseNavbar()">
-                <img width="500" height="30" src="content/images/navlogo2.png">
+                <img width="490" height="30" src="content/images/navlogo2.png">
             </a>
         </div>
         <div class="navbar-collapse" uib-collapse="vm.isNavbarCollapsed" ng-switch="vm.isAuthenticated()">
