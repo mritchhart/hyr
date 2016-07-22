@@ -69,6 +69,120 @@ Version number in navbar
     height: 100%;
     width: 100%;
 }
+
+/* ==========================================================================
+ Student Management - studentManagement.html
+========================================================================== */
+
+#stuMgmtContainer {
+    float: none;
+}
+
+#reviewHeader {
+    text-align: center;
+    margin: 25px 0px;
+}
+
+#selectGrpHeader {
+    margin-bottom: 30px;
+}
+
+#awardPtsHeader {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#selectStuHeader {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#genericSkillName {
+    width: 80%;
+}
+
+#skillName {
+
+}
+
+#pointAmt {
+    width:50%;
+}
+
+.studentRecord {
+    font-size: 1.4em;
+    padding: 5px 0px;
+}
+
+.allStudentsButton {
+    border: 1px solid black;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.allStudentsButton:hover {
+    background-color: lightgrey;
+}
+
+.groupButtonContainer {
+    padding-right:0px;
+    padding-left:0px;
+    margin-top: 15px;
+    margin-bottom:30px;
+}
+
+.groupButton {
+    /*border: 1px solid black;*/
+    padding-right:0px;
+    padding-left:0px;
+}
+
+.centerContainer {
+    float: none;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+.groupBtnContent {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.groupBtnContent:hover {
+    background-color: lightgrey;
+}
+
+.groupBtnContent:active {
+    background-color: lightgrey;
+}
+
+.progressBtn {
+    float:right;
+    font-size: .7em;
+    margin-left: 15px;
+}
+
+.studentRow {
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+}
+
+input.ptsCheckBox {
+    margin-right: 10px;
+    font-size: 1.5em;
+}
+
+.activeGrp {
+    background-color: orange;
+}
+
+.skillInputsContainer {
+    margin-top: 15px;
+}
+
+
 /* ==========================================================================
  Teacher Dashboard - main.html
 ========================================================================== */

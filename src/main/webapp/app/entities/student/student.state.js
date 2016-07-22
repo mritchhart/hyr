@@ -90,6 +90,7 @@
                                 photoContentType: null,
                                 total_points: null,
                                 reward_points: null,
+                                stu_group: null,
                                 id: null
                             };
                         }

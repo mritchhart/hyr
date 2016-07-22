@@ -54,6 +54,10 @@
         {
             "fieldName": "reward_points",
             "fieldType": "Integer"
+        },
+        {
+            "fieldName": "stu_group",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20160504172901",

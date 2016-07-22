@@ -120,6 +120,20 @@ public class StudentResource {
     }
 
     /**
+     * GET  students by class id and stu_grp number
+     *
+     *
+     */
+//    @RequestMapping(value = "/students/{classId}/{groupNum}",
+//            method = RequestMethod.GET,
+//            produces = MediaType.APPLICATION_JSON_VALUE)
+//    @Timed
+//    public List<Student> getStudentsbyClassandGrp(@PathVariable Long classId, @PathVariable Long groupNum) {
+//        log.debug("REST request to get Point_Entry for student id : {}", classId, groupNum);
+//        return studentRepository.findAllByClassroomIdAndGroupId(classId, groupNum);
+//    }
+
+    /**
      * DELETE  /students/:id : delete the "id" student.
      *
      * @param id the id of the student to delete

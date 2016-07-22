@@ -52,6 +52,9 @@ public class Student implements Serializable {
     @Column(name = "reward_points")
     private Integer reward_points;
 
+    @Column(name = "stu_group")
+    private String stu_group;
+
     @ManyToOne
     private Classroom classroom;
 
@@ -137,6 +140,14 @@ public class Student implements Serializable {
         this.reward_points = reward_points;
     }
 
+    public String getStu_group() {
+        return stu_group;
+    }
+
+    public void setStu_group(String stu_group) {
+        this.stu_group = stu_group;
+    }
+
     public Classroom getClassroom() {
         return classroom;
     }
@@ -193,6 +204,7 @@ public class Student implements Serializable {
             ", photoContentType='" + photoContentType + "'" +
             ", total_points='" + total_points + "'" +
             ", reward_points='" + reward_points + "'" +
+            ", stu_group='" + stu_group + "'" +
             '}';
     }
 }

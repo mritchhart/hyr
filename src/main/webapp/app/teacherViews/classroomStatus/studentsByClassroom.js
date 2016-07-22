@@ -22,6 +22,25 @@ angular.module('hopeRanchLearningAcademyApp')
 //                    }]
                 }
             })
+            .state('studentManagement', { /*  Page for students by assigned classroom     */
+                parent: 'entity',
+                url: '/classrooms/studentManagement',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'Student Management'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'app/teacherViews/classroomStatus/studentManagement.html',
+                        controller: 'StudentMgmtController'
+                    }
+                },
+                resolve: {
+//                    entity: ['$stateParams', 'Teacher', function($stateParams, Teacher) {
+//                        return Teacher.get({id : $stateParams.id});
+//                    }]
+                }
+            })
             .state('studentProfile', { /*  Page for students by assigned classroom     */
                 parent: 'entity',
                 url: '/classrooms/studentProfile/{id}',

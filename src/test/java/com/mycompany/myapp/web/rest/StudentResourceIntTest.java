@@ -61,6 +61,8 @@ public class StudentResourceIntTest {
 
     private static final Integer DEFAULT_REWARD_POINTS = 1;
     private static final Integer UPDATED_REWARD_POINTS = 2;
+    private static final String DEFAULT_STU_GROUP = "AAAAA";
+    private static final String UPDATED_STU_GROUP = "BBBBB";
 
     @Inject
     private StudentRepository studentRepository;
@@ -96,6 +98,7 @@ public class StudentResourceIntTest {
         student.setPhotoContentType(DEFAULT_PHOTO_CONTENT_TYPE);
         student.setTotal_points(DEFAULT_TOTAL_POINTS);
         student.setReward_points(DEFAULT_REWARD_POINTS);
+        student.setStu_group(DEFAULT_STU_GROUP);
     }
 
     @Test
@@ -122,6 +125,7 @@ public class StudentResourceIntTest {
         assertThat(testStudent.getPhotoContentType()).isEqualTo(DEFAULT_PHOTO_CONTENT_TYPE);
         assertThat(testStudent.getTotal_points()).isEqualTo(DEFAULT_TOTAL_POINTS);
         assertThat(testStudent.getReward_points()).isEqualTo(DEFAULT_REWARD_POINTS);
+        assertThat(testStudent.getStu_group()).isEqualTo(DEFAULT_STU_GROUP);
     }
 
     @Test
@@ -178,7 +182,8 @@ public class StudentResourceIntTest {
                 .andExpect(jsonPath("$.[*].photoContentType").value(hasItem(DEFAULT_PHOTO_CONTENT_TYPE)))
                 .andExpect(jsonPath("$.[*].photo").value(hasItem(Base64Utils.encodeToString(DEFAULT_PHOTO))))
                 .andExpect(jsonPath("$.[*].total_points").value(hasItem(DEFAULT_TOTAL_POINTS)))
-                .andExpect(jsonPath("$.[*].reward_points").value(hasItem(DEFAULT_REWARD_POINTS)));
+                .andExpect(jsonPath("$.[*].reward_points").value(hasItem(DEFAULT_REWARD_POINTS)))
+                .andExpect(jsonPath("$.[*].stu_group").value(hasItem(DEFAULT_STU_GROUP.toString())));
     }
 
     @Test
@@ -199,7 +204,8 @@ public class StudentResourceIntTest {
             .andExpect(jsonPath("$.photoContentType").value(DEFAULT_PHOTO_CONTENT_TYPE))
             .andExpect(jsonPath("$.photo").value(Base64Utils.encodeToString(DEFAULT_PHOTO)))
             .andExpect(jsonPath("$.total_points").value(DEFAULT_TOTAL_POINTS))
-            .andExpect(jsonPath("$.reward_points").value(DEFAULT_REWARD_POINTS));
+            .andExpect(jsonPath("$.reward_points").value(DEFAULT_REWARD_POINTS))
+            .andExpect(jsonPath("$.stu_group").value(DEFAULT_STU_GROUP.toString()));
     }
 
     @Test
@@ -228,6 +234,7 @@ public class StudentResourceIntTest {
         updatedStudent.setPhotoContentType(UPDATED_PHOTO_CONTENT_TYPE);
         updatedStudent.setTotal_points(UPDATED_TOTAL_POINTS);
         updatedStudent.setReward_points(UPDATED_REWARD_POINTS);
+        updatedStudent.setStu_group(UPDATED_STU_GROUP);
 
         restStudentMockMvc.perform(put("/api/students")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -246,6 +253,7 @@ public class StudentResourceIntTest {
         assertThat(testStudent.getPhotoContentType()).isEqualTo(UPDATED_PHOTO_CONTENT_TYPE);
         assertThat(testStudent.getTotal_points()).isEqualTo(UPDATED_TOTAL_POINTS);
         assertThat(testStudent.getReward_points()).isEqualTo(UPDATED_REWARD_POINTS);
+        assertThat(testStudent.getStu_group()).isEqualTo(UPDATED_STU_GROUP);
     }
 
     @Test

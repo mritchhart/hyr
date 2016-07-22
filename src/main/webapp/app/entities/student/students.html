@@ -26,6 +26,7 @@
                     <th jh-sort-by="photo"><span>Photo</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="total_points"><span translate="hopeRanchLearningAcademyApp.student.total_points">Total Points</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="reward_points"><span translate="hopeRanchLearningAcademyApp.student.reward_points">Reward Points</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="stu_group"><span translate="hopeRanchLearningAcademyApp.student.stu_group">Stu Group</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="classroom.name"><span>Classroom</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -42,6 +43,7 @@
                     </td>
                     <td>{{student.total_points}}</td>
                     <td>{{student.reward_points}}</td>
+                    <td>{{student.stu_group}}</td>
                     <td>
                         <a ui-sref="classroom-detail({id:student.classroom.id})">{{student.classroom.name}}</a>
                     </td>
