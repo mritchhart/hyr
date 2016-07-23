@@ -9,7 +9,7 @@
 
         <!--  ALL STUDENTS BUTTON  -->
         <div class="row">
-            <div class="col-sm-10 col-sm-offset-1 allStudentsButton" ng-model="groups[4]" ng-click="studentGroup = {}; setSelectedGrp(groups[4].groupNum)" ng-class="{activeGrp:groups[4].selected==true}">
+            <div class="col-sm-10 col-sm-offset-1 allStudentsButton" ng-model="groups[4]" ng-click="studentGroup = {}; setSelectedGrp(groups[4].groupNum); checkIfAllSelected()" ng-class="{activeGrp:groups[4].selected==true}">
                 All Students
             </div>
         </div>
@@ -19,18 +19,18 @@
             <div class="col-sm-10 col-sm-offset-1 groupButtonContainer">
 
                 <div class="col-sm-3 groupButton">
-                    <div class="col-sm-10 centerContainer groupBtnContent" ng-model="groups[0]" ng-click="studentGroup = {stu_group: 1}; setSelectedGrp(groups[0].groupNum)" ng-class="{activeGrp:groups[0].selected==true}">
+                    <div class="col-sm-10 centerContainer groupBtnContent" ng-model="groups[0]" ng-click="studentGroup = {stu_group: 1}; setSelectedGrp(groups[0].groupNum); checkIfAllSelected()" ng-class="{activeGrp:groups[0].selected==true}">
                         Group 1
                     </div>
                 </div>
 
                 <div class="col-sm-3 groupButton">
-                    <div class="col-sm-10 centerContainer groupBtnContent" ng-model="groups[1]" ng-click="studentGroup = {stu_group: 2}; setSelectedGrp(groups[1].groupNum)" ng-class="{activeGrp:groups[1].selected==true}">
+                    <div class="col-sm-10 centerContainer groupBtnContent" ng-model="groups[1]" ng-click="studentGroup = {stu_group: 2}; setSelectedGrp(groups[1].groupNum); checkIfAllSelected()" ng-class="{activeGrp:groups[1].selected==true}">
                         Group 2
                     </div>
                 </div>
                 <div class="col-sm-3 groupButton">
-                    <div class="col-sm-10 centerContainer groupBtnContent" ng-model="groups[2]" ng-click="studentGroup = {stu_group: 3}; setSelectedGrp(groups[2].groupNum)" ng-class="{activeGrp:groups[2].selected==true}">
+                    <div class="col-sm-10 centerContainer groupBtnContent" ng-model="groups[2]" ng-click="studentGroup = {stu_group: 3}; setSelectedGrp(groups[2].groupNum); checkIfAllSelected()" ng-class="{activeGrp:groups[2].selected==true}">
                         Group 3
                     </div>
                 </div>

@@ -35,6 +35,7 @@ angular.module('hopeRanchLearningAcademyApp')
         $scope.loadAll();
 
         $scope.currentClassStudents = [];
+        $scope.currentStuGrp = [];
 
         var getCurrentClassStudents = function() {
         console.log($scope.students);
@@ -42,9 +43,11 @@ angular.module('hopeRanchLearningAcademyApp')
             for (var i=0;i<$scope.students.length;i++) {
                 if ($scope.students[i].classroom.id == $scope.currentClassID){
                     $scope.currentClassStudents.push($scope.students[i]);
+                    $scope.currentStuGrp.push($scope.students[i]);
                 }
             }
             console.log($scope.currentClassStudents);
+            console.log($scope.currentStuGrp);
         };
 
         $scope.$watchGroup(["retrievedStudents", "retrievedCurrentClass"], function(newValue, oldValue) {
@@ -273,19 +276,27 @@ angular.module('hopeRanchLearningAcademyApp')
                     $scope.groups[$scope.lastGrpNum-1].selected = false;
                 $scope.groups[groupNum-1].selected = true;
                 console.log("Group Number: " + groupNum + " is now selected");
+                $scope.currentStuGrp = [];
+                angular.forEach($scope.currentClassStudents, function(student) {
+                    if (student.stu_group == groupNum || groupNum == 5) {
+                        $scope.currentStuGrp.push(student)
+                    }
+                });
+                console.log("Current Student Group:");
+                console.log($scope.currentStuGrp);
             }
 
             $scope.lastGrpNum = groupNum;
         };
 
         $scope.selectAll = function() {
-            angular.forEach($scope.currentClassStudents, function(student) {
+            angular.forEach($scope.currentStuGrp, function(student) {
                 student.Selected = $scope.selectedAll;
             });
         };
 
         $scope.checkIfAllSelected = function() {
-            $scope.selectedAll = $scope.currentClassStudents.every(function(student) {
+            $scope.selectedAll = $scope.currentStuGrp.every(function(student) {
                 return student.Selected == true;
             });
         };
@@ -308,7 +319,7 @@ angular.module('hopeRanchLearningAcademyApp')
         $scope.stageSkills = function() {
             var numSelectedStudents = 0;
             var selectedStudentsArr = [];
-            angular.forEach($scope.currentClassStudents, function(student) {
+            angular.forEach($scope.currentStuGrp, function(student) {
                if (student.Selected == true) {
                    selectedStudentsArr.push(student)
                    numSelectedStudents++;
