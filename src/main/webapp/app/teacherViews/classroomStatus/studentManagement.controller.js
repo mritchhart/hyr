@@ -7,6 +7,7 @@ angular.module('hopeRanchLearningAcademyApp')
         $scope.retrievedCurrentClass = false;
         $scope.gatheredAllData = false;
         $scope.selectedRange = "allTime";
+        $scope.pointAmt;
 
         Principal.identity().then(function(account) {
                     $scope.account = account;
@@ -30,6 +31,17 @@ angular.module('hopeRanchLearningAcademyApp')
             });
             Social_skill.query(function(result) {
                $scope.allSS = result;
+                console.log($scope.allSS);
+                $scope.classroomSkills = [];
+                for (var i=0;i<$scope.allSS.length;i++) {
+
+                    if ($scope.allSS[i].description != null && $scope.allSS[i].description != undefined && $scope.currentClassName != undefined) {
+                        if ($scope.allSS[i].description.toLowerCase() == $scope.currentClassName.toLowerCase())
+                            $scope.classroomSkills.push($scope.allSS[i]);
+                    }
+                }
+                console.log("Classroom Specific Skills:");
+                console.log($scope.classroomSkills);
             });
         };
         $scope.loadAll();
@@ -328,6 +340,7 @@ angular.module('hopeRanchLearningAcademyApp')
             if (numSelectedStudents == 1) {
                 console.log("There is 1 student selected");
                 $scope.selectedStudent = selectedStudentsArr[0];
+                console.log($scope.selectedStudent = selectedStudentsArr[0]);
                 $scope.getSingleSkillData($scope.selectedStudent.id);
             } else if (numSelectedStudents > 1) {
                 console.log("There are " + numSelectedStudents + " students selected");
