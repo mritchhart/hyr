@@ -75,32 +75,32 @@
                     <div class="skillInputsContainer col-sm-12">
                         <div class="form-group col-sm-7" ng-if="selectedStudent != null">
                             <label for="skillName" style="padding-right:10px;">Skill: </label>
-                            <select class="form-control" id="skillName" ng-model="selectedSkill">
+                            <select class="form-control" id="skillName" ng-model="form.selectedSkill">
                                 <option value="">  ---Please select---  </option>
-                                <option ng-repeat="skill in selectedStudentSkills" value="{{skill.skillID}">{{skill.skillName}}</option>
+                                <option ng-repeat="skill in selectedStudentSkills" value="{{skill.skillID}}">{{skill.skillName}}</option>
                             </select>
                         </div>
                         <div class="form-group col-sm-7" ng-if="selectedStudent == null">
                             <label for="genericSkillName" style="padding-right:10px;">Skill: </label>
-                            <select class="form-control" id="genericSkillName" ng-model="selectedSkill">
+                            <select class="form-control" id="genericSkillName" ng-model="form.selectedSkill">
                                 <option value="">  ---Please select---  </option>
-                                <option ng-repeat="skill in classroomSkills"  value="{{skill.name}}">{{skill.name}}</option>
+                                <option ng-repeat="skill in classroomSkills"  value="{{skill}}">{{skill.name}}</option>
                             </select>
                         </div>
 
                         <div class="form-group col-sm-5">
                             <label for="pointAmt" style="padding-right:10px;">Points: </label>
-                            <input class="form-control" id="pointAmt" type="number" ng-model="pointAmt">
+                            <input class="form-control" id="pointAmt" type="number" ng-model="form.pointAmt">
                         </div>
                     </div>
                     <div class="col-sm-12" style="margin-top:40px;">
                         <div class="row">
-                            <input class="btn btn-success col-sm-6 col-sm-offset-3" type="button" value="Add" style="padding: 15px 0px">
+                            <input class="btn btn-success col-sm-6 col-sm-offset-3" type="button" value="Add" style="padding: 15px 0px" ng-click="awardPoints('add')">
                         </div>
                         <br />
                         <br />
                         <div class="row">
-                            <input class="btn btn-danger col-sm-6 col-sm-offset-3" type="button" value="Subtract" style="padding: 15px 0px">
+                            <input class="btn btn-danger col-sm-6 col-sm-offset-3" type="button" value="Subtract" style="padding: 15px 0px" ng-click="awardPoints('subtract')">
                         </div>
                     </div>
                 </div>
