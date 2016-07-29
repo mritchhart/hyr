@@ -7,7 +7,8 @@ angular.module('hopeRanchLearningAcademyApp')
         $scope.retrievedCurrentClass = false;
         $scope.gatheredAllData = false;
         $scope.selectedRange = "allTime";
-        $scope.form = {};
+        $scope.pointAmt = 0;
+        $scope.formData = {};
 
         Principal.identity().then(function(account) {
                     $scope.account = account;
@@ -354,39 +355,48 @@ angular.module('hopeRanchLearningAcademyApp')
         };
 
         $scope.awardPoints = function(action) {
-            Student_social_skill.query(function(result) {
-                $scope.allSSS = result;
-                console.log($scope.allSSS);
-            });
             console.log("action = " + action);
-            console.log($scope.selectedStudentsArr);
+            if (action == "add") {
+                if ($scope.pointAmt >= 0)
+                    $scope.pointAmt = $scope.pointAmt;
+                else
+                    $scope.pointAmt = $scope.pointAmt * (-1);
+            }
+            else {
+                if ($scope.pointAmt <= 0)
+                    $scope.pointAmt = $scope.pointAmt;
+                else
+                    $scope.pointAmt = -$scope.pointAmt;
+            }
+            console.log("Point Amount = " + $scope.pointAmt);
+//            console.log($scope.selectedStudentsArr);
+            console.log($scope.formData.selectedSkillId);
+
+            // Get the full skill object to be used in new Point Entry
+            Social_skill.get({id: $scope.formData.selectedSkillId}, function(result) {
+                console.log(result);
+                $scope.social_skill_obj = result;
+                $scope.saveNewPoints(result, action);
+            });
+        };
+
+        $scope.saveNewPoints = function(skill, action) {
             var selectedStudents = $scope.selectedStudentsArr;
             if (selectedStudents == undefined || selectedStudents.length < 1) {
                 console.log("No students selected");
             }
             for (var i=0;i<selectedStudents.length;i++) {
-                // IF more than one student is selected, check to see if each student is enrolled in the selected classroom skill
-                if (selectedStudents.length > 1)
-                    $scope.checkIfEnrolledInSkill(selectedStudents[i]);
-                else {
-                    // only one student selected
-
-                    // create and save new Point Entry
-                    $scope.buildFullEntryObject(selectedStudents[i], action);
-
-                    // update SSS net and gross Points
-
-                    // update Student net and gross Points
-                }
+                $scope.checkIfEnrolledInSkill(selectedStudents[i], action, skill);
             }
         };
 
-        var enrollNewSkill = function(student, skill) {
+        var enrollNewSkill = function(student, skill, action) {
+            console.log("building new SSS object...");
             var startDate = new Date();
 
             var newSSS = {
-                gross_pts: $scope.form.pointAmt,
-                net_pts: $scope.form.pointAmt,
+                gross_pts: $scope.pointAmt,
+                net_pts: $scope.pointAmt,
                 start_date: startDate,
                 end_date: null,
                 status: "active",
@@ -394,17 +404,18 @@ angular.module('hopeRanchLearningAcademyApp')
                 student: student,
                 social_skill: skill
             };
+            console.log("SSS to save:");
             console.log(newSSS);
 
-            $scope.saveNewSSS(newSSS);
+            $scope.saveNewSSS(newSSS, student, action);
         };
 
-        $scope.checkIfEnrolledInSkill = function(currentStudent) {
+        $scope.checkIfEnrolledInSkill = function(currentStudent, action, skill) {
             var currStuId = currentStudent.id;
-            console.log($scope.form.selectedSkill);
-            var skillToReward = $scope.form.selectedSkill;
-            var skillIdToReward = $scope.form.selectedSkill.id;
-            var isEnrolled = false;
+            var selectedSkill = skill;
+            console.log(selectedSkill);
+            var skillToReward = skill;
+            var skillIdToReward = skill.id;
             var sssToUpdate;
 
             console.log(skillIdToReward);
@@ -413,123 +424,126 @@ angular.module('hopeRanchLearningAcademyApp')
                 console.log(result);
                 if (result.sssRecord[0] == undefined) {
                     console.log("Student: " + currentStudent.first_name + " is NOT Enrolled in Awarded Skill");
-                    enrollNewSkill(currentStudent, skillToReward);
+                    enrollNewSkill(currentStudent, skillToReward, action);
                 } else {
                     console.log("Student Is Enrolled in Awarded Skill");
-                    isEnrolled = true;
                     sssToUpdate = result.sssRecord[0];
+                    console.log("the SSS to Update:");
+                    console.log(sssToUpdate);
+                    $scope.updateSSSPoints(sssToUpdate);
+                    $scope.buildFullEntryObject(currentStudent, action);
+                    $scope.updateStudentPts(currentStudent, action);
                 }
             });
-
-//            for (var i=0;i<$scope.allSSS.length;i++) {
-//                if ($scope.allSSS[i].student.id == currStuId && $scope.allSSS[i].social_skill.id == skillIdToReward){
-//                    console.log("Student Is Enrolled in Awarded Skill");
-//                    isEnrolled = true;
-//                    sssToUpdate = $scope.allSSS[i];
-//                    break;
-//                }
-//            }
         };
 
         // In Progress - Code from UpdatePointsModal
 
         $scope.buildFullEntryObject = function(currentStu, action) {
-            $scope.point_Entry.id = null;
-            $scope.point_Entry.ent_value = $scope.form.pointAmt;
-            $scope.point_Entry.ent_submission_time = new Date();
-            $scope.point_Entry.ent_action_time = new Date();
-            $scope.point_Entry.teacher = $scope.teacherObj;
-            $scope.point_Entry.student = currentStu;
+            console.log("Building New Point Entry Object for:" + currentStu.first_name);
+            var point_Entry = {};
+            point_Entry.id = null;
+            point_Entry.ent_value = $scope.pointAmt;
+            point_Entry.ent_submission_time = new Date();
+            point_Entry.ent_action_time = new Date();
+            point_Entry.teacher = $scope.teacherObj;
+            point_Entry.student = currentStu;
 
-            if (action == "add") {
-                if ($scope.point_Entry.ent_value > 0)
-                    $scope.point_Entry.ent_value = $scope.point_Entry.ent_value;
-                else
-                    $scope.point_Entry.ent_value = $scope.point_Entry.ent_value;
-                //remove line above, reject entry and show an error
-            }
-            else {
-                if ($scope.point_Entry.ent_value <= 0)
-                    $scope.point_Entry.ent_value = $scope.point_Entry.ent_value;
-                else
-                    $scope.point_Entry.ent_value = -$scope.point_Entry.ent_value;
-            }
-
-            console.log($scope.point_Entry.ent_value);
+            console.log(point_Entry.ent_value);
             console.log(action);
+            console.log($scope.social_skill_obj);
 
-            Social_skill.get({id: $scope.form.selectedSkill.id}, function(result) {
-                console.log(result);
-                $scope.social_skill_obj = result;
-                $scope.point_Entry.social_skill = $scope.social_skill_obj;
-                $scope.save();
-            });
+            point_Entry.social_skill = $scope.social_skill_obj;
+            $scope.save(point_Entry);
 
 
         };
 
         var onSssSaveSuccess = function (result) {
-            console.log("Save Successful");
+            console.log("Save Success");
+            console.log("New SSS Added");
+            $scope.isSaving = false;
+            // create and save new Point Entry
+//            $scope.buildFullEntryObject(student);
+            $scope.sssSaveSuccessStuId = result.student.id;
+        };
+
+        var onUpdateSaveSuccess = function (result) {
+            console.log("Save Success");
+            console.log("SSS Updated");
+            $scope.isSaving = false;
+            console.log(result);
 
             // create and save new Point Entry
-
-            // update Student net and gross Points
-
-
-            $scope.isSaving = false;
+//            $scope.buildFullEntryObject(student);
         };
 
         var onSaveSuccess = function (result) {
-            console.log("Save Failed");
+            console.log("Save Success");
+            console.log("Point Entry Saved");
             $scope.isSaving = false;
+            console.log(result);
         };
 
         var onSaveError = function (result) {
             console.log("Save Failed");
             $scope.isSaving = false;
+            console.log(result);
         };
 
-        $scope.saveNewSSS = function (newSSS) {
+        $scope.saveNewSSS = function (newSSS, student, action) {
             $scope.isSaving = true;
+            console.log("Saving New SSS...");
             Student_social_skill.save(newSSS, onSssSaveSuccess, onSaveError);
+
+            $scope.$watch('sssSaveSuccessStuId', function(newValue, oldValue) {
+                if (newValue != undefined && newValue == student.id) {
+                    console.log("Creating a new point entry for student: " + student.first_name + " " + student.last_name);
+                    // Create a new Point Entry
+                    $scope.buildFullEntryObject(student, action);
+                }
+            });
+
+            // update Student net and gross Points
+            $scope.updateStudentPts(student, action)
         };
 
-        $scope.save = function () {
+        $scope.updateSSSPoints = function(updatedSSS) {
+            updatedSSS.gross_pts = updatedSSS.gross_pts + $scope.pointAmt;
+            updatedSSS.net_pts = updatedSSS.gross_pts + $scope.pointAmt;
             $scope.isSaving = true;
-//        console.log(pointVal);
-            console.log($scope.point_Entry);
-            if ($scope.point_Entry.id != null) {
-                Point_entry.update($scope.point_Entry, onSaveSuccess, onSaveError);
+            console.log("Updating SSS...");
+            Student_social_skill.update(updatedSSS, onUpdateSaveSuccess, onSaveError);
+        };
+
+        $scope.save = function (point_Entry) {
+            $scope.isSaving = true;
+            console.log("Saving New Point Entry...");
+            console.log(point_Entry);
+            if (point_Entry.id != null) {
+                Point_entry.update(point_Entry, onSaveSuccess, onSaveError);
             } else {
                 // Save New Point Entry Record
-                Point_entry.save($scope.point_Entry, onSaveSuccess, onSaveError);
+                Point_entry.save(point_Entry, onSaveSuccess, onSaveError);
             }
         };
 
         var rewardUpdateSuccess = function (result) {
-            console.log("Reward Points Successfully Updated");
+            console.log("Save Success");
+            console.log("Reward & Total Points Successfully Updated");
             //        $scope.isSaving = false;
         };
 
         var rewardUpdateError = function (result) {
-            console.log("Reward Points FAILED to Update");
+            console.log("Reward & Total Points FAILED to Update");
             //        $scope.isSaving = false;
         };
 
-        var updateStudentRewardPts = function(pointsToAdd) {
+        $scope.updateStudentPts = function(student, action) {
 
-            $scope.pointsToAdd = pointsToAdd
-            console.log("updated Student Record Before:");
-            console.log($scope.student);
-            $scope.student.total_points = $scope.modalData.student.total_points + pointsToAdd;
-            $scope.newRewardPts = $scope.modalData.student.reward_points + pointsToAdd;
-            $timeout(function() {
-                //update reward points
-                $scope.student.reward_points = $scope.student.reward_points + pointsToAdd;
-                console.log("updated Student Record After:");
-                console.log($scope.student);
-                Student.update($scope.student, rewardUpdateSuccess, rewardUpdateError);
-            }, 4100);
+            student.total_points = student.total_points + $scope.pointAmt;
+            student.reward_points = student.reward_points + $scope.pointAmt;
+            Student.update(student, rewardUpdateSuccess, rewardUpdateError);
 
         };
 

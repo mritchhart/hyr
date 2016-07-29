@@ -32,7 +32,8 @@ angular.module('hopeRanchLearningAcademyApp')
                 views: {
                     'content@': {
                         templateUrl: 'app/teacherViews/classroomStatus/studentManagement.html',
-                        controller: 'StudentMgmtController'
+                        controller: 'StudentMgmtController',
+                        controllerAs: 'vm'
                     }
                 },
                 resolve: {
