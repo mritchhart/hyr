@@ -1,0 +1,78 @@
+
+        <div class="modal-body">
+            <span class="glyphicon glyphicon-remove studentProgressModalBtn" style="float:right; font-size: 3.3em;" ng-click="ok()"></span>
+
+            <div class="profileContainer">
+                <img class="profilePic" ng-src="data:image/jpeg;base64,{{student.photo}}" alt="student image" height="140" width="140" ng-if="student.photo != null">
+                <img class="profilePic" ng-src="content/images/person-placeholder.jpg" alt="student image" height="140" width="140" ng-if="student.photo === null">
+                <h2 class="profileHeader">{{student.first_name}} {{student.last_name}}</h2>
+                <h4 class="profileHeader">Goal: {{student.goal}}</h4>
+                <label for="rewardPoints" class="rewardPointsLabel">Reward Points: </label><span id="rewardPoints">{{student.reward_points}}</span>
+
+                <form role="form" ng-submit="submitCustomRange()">
+                    <label style="margin-top: 30px;">Date Range:</label>
+                    <!--<label class="radio-inline">-->
+                        <!--<input type="radio" name="range" value="allTime" id="allTime" ng-model="$parent.selectedRange" checked> All Time-->
+                    <!--</label>-->
+                    <!--<label class="radio-inline">-->
+                        <!--<input type="radio" name="range" value="custom" ng-model="$parent.selectedRange"> Custom-->
+                    <!--</label>-->
+                    <button class="dateRngbtn" id="allTimeRngBtn" type="button" ng-click="selectedRange = 'allTime'" ng-class="{activeRange:selectedRange=='allTime', inactiveRange:selectedRange == 'custom'}">All Time</button>
+                    <button class="dateRngbtn" id="customRngBtn" type="button" ng-click="selectedRange = 'custom'" ng-class="{activeRange:selectedRange=='custom', inactiveRange:selectedRange == 'allTime'}" ng-blur="selectedRange=='custom'">Custom</button>
+
+                    <!-- DATEPICKER -->
+                    <div ng-if="selectedRange=='custom'">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <br />
+                                <label for="startDate">From:</label>
+                                <p class="input-group">
+                                    <input type="text" id="startDate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dateHolder.mt" is-open="popup1.opened" datepicker-options="inlineOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" readonly/>
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                </p>
+                            </div>
+
+                            <div class="col-md-6">
+                                <br />
+                                <label for="endDate">To:</label>
+                                <p class="input-group">
+                                    <input type="text" id="endDate" class="form-control" uib-datepicker-popup ng-model="dateHolder2.mt" is-open="popup2.opened" datepicker-options="inlineOptions" ng-required="true" close-text="Close" readonly/>
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                </p>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-default">Refresh Date Range</button>
+                    </div>
+                </form>
+            </div>
+
+
+
+            <div class="skillsContainer">
+                <h3 class="skillsTableHeader">Active Skills
+            <span ng-click="expandSkillTable = !expandSkillTable">
+                <i class="glyphicon " ng-class="{'glyphicon-minus': expandSkillTable, 'glyphicon-plus': !expandSkillTable}" ></i>
+            </span>
+                </h3>
+                <div class="table-responsive animated" ng-class="{'fadeOut': !expandSkillTable, 'fadeIn': expandSkillTable}" ng-show="expandSkillTable">
+                    <table class="table table-striped skillsTable">
+                        <tr>
+                            <th>Skill Name</th>
+                            <th>Points</th>
+                        </tr>
+                        <tr ng-repeat="entry in skillInfo.skillPointsAndNames | orderBy: 'name'">
+                            <td>{{entry.name}}</td>
+                            <td>{{entry.points}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+

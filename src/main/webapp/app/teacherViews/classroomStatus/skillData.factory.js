@@ -10,13 +10,13 @@ angular.module('hopeRanchLearningAcademyApp')
         skillDataService.set = function(data) {
             skillDataService.savedData = data;
             console.log("Data set");
-            //console.log(data);
+            console.log(data);
             //localStorageService.set('currentSkillData', data);
         };
 
         skillDataService.get = function() {
             //var storedData = localStorageService.get('currentSkillData');
-            //console.log(storedData);
+            console.log(skillDataService.savedData);
             return skillDataService.savedData;
         };
 

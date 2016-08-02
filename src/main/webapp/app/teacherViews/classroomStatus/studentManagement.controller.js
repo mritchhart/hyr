@@ -1,13 +1,16 @@
 'use strict';
 
 angular.module('hopeRanchLearningAcademyApp')
-    .controller('StudentMgmtController', function ($scope, $state, $http, Student, Teacher, Principal, Student_Skills, Skill_Data, skillDataService, Social_skill, Skill_Data_Custom, Student_social_skill, Point_entry, Enrolled_SSS) {
+    .controller('StudentMgmtController', function ($scope, $state, $http, $timeout, $uibModal, Student, Teacher, Principal, Student_Skills, Skill_Data, skillDataService, Social_skill, Skill_Data_Custom, Student_social_skill, Point_entry, Enrolled_SSS) {
 
         $scope.retrievedStudents = false;
         $scope.retrievedCurrentClass = false;
         $scope.gatheredAllData = false;
         $scope.selectedRange = "allTime";
-        $scope.pointAmt = 0;
+        $scope.numSelectedStudents = 0;
+        $scope.action = "";
+        $scope.pointAmt;
+        $scope.noneSelected = false;
         $scope.formData = {};
 
         Principal.identity().then(function(account) {
@@ -278,6 +281,10 @@ angular.module('hopeRanchLearningAcademyApp')
         $scope.lastGrpNum = $scope.groups[4].groupNum;
         console.log($scope.groups);
 
+        $scope.setAction = function(action) {
+            $scope.action = action;
+        }
+
         $scope.setSelectedGrp = function(groupNum) {
             console.log("set group function called");
             console.log("selected group Number = " + groupNum);
@@ -331,6 +338,10 @@ angular.module('hopeRanchLearningAcademyApp')
         };
 
         $scope.stageSkills = function() {
+            if ($scope.formData.selectedSkillId != undefined) {
+                $scope.formData.selectedSkillId = "";
+            }
+
             var numSelectedStudents = 0;
             var selectedStudentsArr = [];
             angular.forEach($scope.currentStuGrp, function(student) {
@@ -352,9 +363,21 @@ angular.module('hopeRanchLearningAcademyApp')
                 $scope.selectedStudent = null;
             }
             $scope.selectedStudentsArr = selectedStudentsArr;
+            $scope.numSelectedStudents = numSelectedStudents;
+            console.log($scope.numSelectedStudents);
         };
 
-        $scope.awardPoints = function(action) {
+        $scope.awardPoints = function() {
+            var action = $scope.action;
+            if ($scope.numSelectedStudents < 1) {
+                console.log("Please select one or more students");
+                $scope.noneSelected = true;
+                $timeout(function () {
+                    $scope.noneSelected = false;
+                }, 1500);
+                return;
+            }
+
             console.log("action = " + action);
             if (action == "add") {
                 if ($scope.pointAmt >= 0)
@@ -448,6 +471,7 @@ angular.module('hopeRanchLearningAcademyApp')
             point_Entry.ent_action_time = new Date();
             point_Entry.teacher = $scope.teacherObj;
             point_Entry.student = currentStu;
+            point_Entry.ent_status = 'approved';
 
             console.log(point_Entry.ent_value);
             console.log(action);
@@ -671,6 +695,33 @@ angular.module('hopeRanchLearningAcademyApp')
             var newDate = new Date();
             newformat = newDate.toLocaleDateString();
             console.log(newformat);*/
+        };
+
+//        ================ MODAL CODE ================
+
+        $scope.open = function (student) {
+            $scope.modalData = {};
+
+            $scope.modalData.student = student;
+
+            var uibModalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'app/teacherViews/classroomStatus/modal/studentProgressModal.html',
+                controller: 'StudentProgressModalCtrl',
+                size: 'md',
+                resolve: {
+                    modalData: function () {
+                        return $scope.modalData;
+                    }
+                }
+            });
+
+            uibModalInstance.result.then(function () {
+                console.log("Modal closed");
+            }, function () {
+                console.log('Modal dismissed at: ' + new Date());
+                /*odometer.innerText = 20000;*/
+            });
         };
 
 
