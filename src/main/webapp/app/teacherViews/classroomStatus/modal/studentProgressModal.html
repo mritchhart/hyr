@@ -17,8 +17,8 @@
                     <!--<label class="radio-inline">-->
                         <!--<input type="radio" name="range" value="custom" ng-model="$parent.selectedRange"> Custom-->
                     <!--</label>-->
-                    <button class="dateRngbtn" id="allTimeRngBtn" type="button" ng-click="selectedRange = 'allTime'" ng-class="{activeRange:selectedRange=='allTime', inactiveRange:selectedRange == 'custom'}">All Time</button>
-                    <button class="dateRngbtn" id="customRngBtn" type="button" ng-click="selectedRange = 'custom'" ng-class="{activeRange:selectedRange=='custom', inactiveRange:selectedRange == 'allTime'}" ng-blur="selectedRange=='custom'">Custom</button>
+                    <button class="dateRngbtn" id="allTimeRngBtn" type="button" ng-click="selectedRange = 'allTime'" ng-class="{activeRange:selectedRange=='allTime', inactiveRange:selectedRange == 'custom'}" ng-model="$parent.selectedRange">All Time</button>
+                    <button class="dateRngbtn" id="customRngBtn" type="button" ng-click="selectedRange = 'custom'" ng-class="{activeRange:selectedRange=='custom', inactiveRange:selectedRange == 'allTime'}" ng-blur="selectedRange=='custom'" ng-model="$parent.selectedRange">Custom</button>
 
                     <!-- DATEPICKER -->
                     <div ng-if="selectedRange=='custom'">
@@ -38,7 +38,7 @@
                                 <br />
                                 <label for="endDate">To:</label>
                                 <p class="input-group">
-                                    <input type="text" id="endDate" class="form-control" uib-datepicker-popup ng-model="dateHolder2.mt" is-open="popup2.opened" datepicker-options="inlineOptions" ng-required="true" close-text="Close" readonly/>
+                                    <input type="text" id="endDate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dateHolder2.mt" is-open="popup2.opened" datepicker-options="inlineOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" readonly/>
                                   <span class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
                                   </span>

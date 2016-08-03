@@ -253,6 +253,20 @@ input.ptsCheckBox {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0b0b0', endColorstr='#979797',GradientType=0 ); /* IE6-8 */
 }
 
+.loadingOverlay {
+    /*background-image: url(../images/overlay.png);*/
+    /*background-color: rgba(0,0,0,.5);*/
+    z-index: 1000;
+}
+.overlaySpinner {
+    margin-left:40%;
+}
+
+.spinnerHeight {
+    margin-top:40%;
+}
+
+
 /* ==========================================================================
  Teacher Dashboard - main.html
 ========================================================================== */

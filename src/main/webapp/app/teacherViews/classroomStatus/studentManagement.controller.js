@@ -8,6 +8,8 @@ angular.module('hopeRanchLearningAcademyApp')
         $scope.gatheredAllData = false;
         $scope.selectedRange = "allTime";
         $scope.numSelectedStudents = 0;
+        $scope.updatingPoints = false;
+        $scope.showAnimation = false;
         $scope.action = "";
         $scope.pointAmt;
         $scope.noneSelected = false;
@@ -283,7 +285,7 @@ angular.module('hopeRanchLearningAcademyApp')
 
         $scope.setAction = function(action) {
             $scope.action = action;
-        }
+        };
 
         $scope.setSelectedGrp = function(groupNum) {
             console.log("set group function called");
@@ -308,6 +310,13 @@ angular.module('hopeRanchLearningAcademyApp')
             }
 
             $scope.lastGrpNum = groupNum;
+        };
+
+        $scope.clearStuSelections = function() {
+            for (var x in $scope.currentStuGrp) {
+                $scope.currentStuGrp[x].Selected = false
+            }
+            $scope.selectedStudent = null;
         };
 
         $scope.selectAll = function() {
@@ -368,6 +377,15 @@ angular.module('hopeRanchLearningAcademyApp')
         };
 
         $scope.awardPoints = function() {
+
+            console.log("Selected Students Array Length = " + $scope.selectedStudentsArr.length);
+            console.log("Num Selected Students = " + $scope.numSelectedStudents);
+
+            $scope.spinnerHeight = $('#selectStuContainer').height();
+            console.log($scope.spinnerHeight);
+            $scope.numSaves = 0;
+
+            $scope.updatingPoints = true;
             var action = $scope.action;
             if ($scope.numSelectedStudents < 1) {
                 console.log("Please select one or more students");
@@ -490,6 +508,7 @@ angular.module('hopeRanchLearningAcademyApp')
             // create and save new Point Entry
 //            $scope.buildFullEntryObject(student);
             $scope.sssSaveSuccessStuId = result.student.id;
+            $scope.numSaves++;
         };
 
         var onUpdateSaveSuccess = function (result) {
@@ -497,7 +516,7 @@ angular.module('hopeRanchLearningAcademyApp')
             console.log("SSS Updated");
             $scope.isSaving = false;
             console.log(result);
-
+            $scope.numSaves++;
             // create and save new Point Entry
 //            $scope.buildFullEntryObject(student);
         };
@@ -507,12 +526,14 @@ angular.module('hopeRanchLearningAcademyApp')
             console.log("Point Entry Saved");
             $scope.isSaving = false;
             console.log(result);
+            $scope.numSaves++;
         };
 
         var onSaveError = function (result) {
             console.log("Save Failed");
             $scope.isSaving = false;
             console.log(result);
+            $scope.numSaves++;
         };
 
         $scope.saveNewSSS = function (newSSS, student, action) {
@@ -556,11 +577,13 @@ angular.module('hopeRanchLearningAcademyApp')
             console.log("Save Success");
             console.log("Reward & Total Points Successfully Updated");
             //        $scope.isSaving = false;
+            $scope.numSaves++;
         };
 
         var rewardUpdateError = function (result) {
             console.log("Reward & Total Points FAILED to Update");
             //        $scope.isSaving = false;
+            $scope.numSaves++;
         };
 
         $scope.updateStudentPts = function(student, action) {
@@ -570,6 +593,32 @@ angular.module('hopeRanchLearningAcademyApp')
             Student.update(student, rewardUpdateSuccess, rewardUpdateError);
 
         };
+
+
+        $scope.$watch('numSaves', function(newValue, oldValue) {
+            console.log("Number of Saves: " + $scope.numSaves);
+            if (newValue == $scope.numSelectedStudents * 3) {
+                console.log($scope.numSelectedStudents * 3 + " saves!");
+
+                var selectedStuArrCpy = $scope.selectedStudentsArr;
+                $scope.selectedStuIds = [];
+                for (var i=0;i<selectedStuArrCpy.length;i++) {
+                    $scope.selectedStuIds.push(selectedStuArrCpy[i].id);
+                }
+                console.log($scope.selectedStuIds);
+                $scope.updatingPoints = false;
+                $scope.showAnimation = true;
+                $scope.startFadeOut = false;
+                $scope.startFadeIn = true;
+                $timeout(function () {
+                    $scope.startFadeIn = false;
+                    $scope.startFadeOut = true;
+                }, 2000);
+                $timeout(function () {
+                    $scope.showAnimation = false;
+                }, 3000);
+            }
+        });
 
         //        ======= END July Updates  ===========
 
