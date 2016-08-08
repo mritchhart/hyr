@@ -61,7 +61,9 @@
                             <tr ng-repeat="student in currentClassStudents | filter:studentGroup track by student.id" class="studentRow">
                                 <td class="studentRecord">
                                     <input type="checkbox" class="ptsCheckBox" ng-model="student.Selected" ng-click="checkIfAllSelected(); stageSkills()">
-                                    <span>{{student.first_name}} {{student.last_name}}</span><span ng-show="showAnimation && selectedStuIds.indexOf(student.id)!= -1" class="animated " ng-class="{fadeIn:startFadeIn, fadeOut:startFadeOut}" style="color:green;padding-left:5px;">+ {{pointAmt}}</span>
+                                    <span>{{student.first_name}} {{student.last_name}}</span>
+                                    <span ng-show="showAnimation && !addAnimation && selectedStuIds.indexOf(student.id)!= -1" class="animated " ng-class="{fadeIn:startFadeIn, fadeOut:startFadeOut}" style="color:red;padding-left:5px;">{{pointAmt}}</span>
+                                    <span ng-show="showAnimation && addAnimation && selectedStuIds.indexOf(student.id)!= -1" class="animated " ng-class="{fadeIn:startFadeIn, fadeOut:startFadeOut}" style="color:green;padding-left:5px;">+ {{pointAmt}}</span>
                                     <button type="button" class="btn btn-info progressBtn" ng-click="open(student)">View Progress  <span class="glyphicon glyphicon-new-window"></span></button> &nbsp;&nbsp;
                                     <a class="btn btn-default" ui-sref="assignSkills({id:student.id})" style="float: right;">
                                         Manage Skills
@@ -102,13 +104,13 @@
                     </div>
                     <div class="col-sm-12" style="margin-top:40px;">
                         <div class="row">
-                            <input ng-if="!noneSelected" class="btn btn-success col-sm-6 col-sm-offset-3" type="submit" value="Add" style="padding: 15px 0px" ng-click="setAction('add')" ng-disabled="updatingPoints">
+                            <input ng-if="!noneSelected" class="btn btn-success col-sm-6 col-sm-offset-3" type="submit" value="Add" style="padding: 15px 0px" ng-click="setAction('add')" ng-disabled="updatingPoints || formData.selectedSkillId == '' || formData.selectedSkillId == undefined">
                             <span ng-if="noneSelected" class="text-center col-sm-6 col-sm-offset-3" style="color:red;">No Students Selected</span>
                         </div>
                         <br />
                         <br />
                         <div class="row">
-                            <input class="btn btn-danger col-sm-6 col-sm-offset-3" type="button" value="Subtract" style="padding: 15px 0px; margin-bottom:30px;" ng-click="setAction('subtract')" ng-disabled="updatingPoints">
+                            <input class="btn btn-danger col-sm-6 col-sm-offset-3" type="submit" value="Subtract" style="padding: 15px 0px; margin-bottom:30px;" ng-click="setAction('subtract')" ng-disabled="updatingPoints || formData.selectedSkillId == '' || formData.selectedSkillId == undefined">
                         </div>
                     </div>
                 </div>

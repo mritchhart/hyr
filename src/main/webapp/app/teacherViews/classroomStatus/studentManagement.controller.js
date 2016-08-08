@@ -10,6 +10,7 @@ angular.module('hopeRanchLearningAcademyApp')
         $scope.numSelectedStudents = 0;
         $scope.updatingPoints = false;
         $scope.showAnimation = false;
+        $scope.addAnimattion = false;
         $scope.action = "";
         $scope.pointAmt;
         $scope.noneSelected = false;
@@ -555,7 +556,7 @@ angular.module('hopeRanchLearningAcademyApp')
 
         $scope.updateSSSPoints = function(updatedSSS) {
             updatedSSS.gross_pts = updatedSSS.gross_pts + $scope.pointAmt;
-            updatedSSS.net_pts = updatedSSS.gross_pts + $scope.pointAmt;
+            updatedSSS.net_pts = updatedSSS.net_pts + $scope.pointAmt;
             $scope.isSaving = true;
             console.log("Updating SSS...");
             Student_social_skill.update(updatedSSS, onUpdateSaveSuccess, onSaveError);
@@ -607,6 +608,12 @@ angular.module('hopeRanchLearningAcademyApp')
                 }
                 console.log($scope.selectedStuIds);
                 $scope.updatingPoints = false;
+                if ($scope.action == 'add') {
+                    $scope.addAnimation = true;
+                } else {
+                    $scope.addAnimation = false;
+                }
+                $scope.animateAdd = true;
                 $scope.showAnimation = true;
                 $scope.startFadeOut = false;
                 $scope.startFadeIn = true;

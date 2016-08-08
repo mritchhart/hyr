@@ -96,14 +96,16 @@ angular.module('hopeRanchLearningAcademyApp')
         };
 
         $scope.$watch("numSkillDataRetrieved", function(newValue, oldValue) {
-            console.log("Number of SkillData retrieved = " + newValue);
-            if ($scope.skillIds != null) {
-                if (newValue == $scope.skillIds.length) {
-                    console.log(newValue + " Skill Data Objects Retrieved");
-                    console.log("all skill Data retrieved and seen by watcher");
-                    $scope.oldSkillPointsAndNames = null;
-                    $scope.currentSkills = $scope.skillInfo.skillPointsAndNames;
-                    console.log($scope.currentSkills);
+            if (newValue != undefined) {
+                console.log("Number of SkillData retrieved = " + newValue);
+                if ($scope.skillIds != null && newValue != undefined) {
+                    if (newValue == $scope.skillIds.length) {
+                        console.log(newValue + " Skill Data Objects Retrieved");
+                        console.log("all skill Data retrieved and seen by watcher");
+                        $scope.oldSkillPointsAndNames = null;
+                        $scope.currentSkills = $scope.skillInfo.skillPointsAndNames;
+                        console.log($scope.currentSkills);
+                    }
                 }
             }
         });
@@ -158,7 +160,7 @@ angular.module('hopeRanchLearningAcademyApp')
         };
 
         $scope.$watchGroup(["currentSkills", "social_Skills"], function(newValue, oldValue) {
-            console.log(newValue[0]);
+//            console.log(newValue[0]);
             if (newValue[0] != null && newValue[0] != undefined && newValue[1] != [] && newValue[1] != undefined) {
                 console.log("all Data retrieved");
 
